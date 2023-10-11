@@ -4,6 +4,8 @@ sidebar_position: 1
 
 # Loops
 
+[Slides](pathname:///slides/loops.html)
+
 blah blah blah
 
 ```javascript
