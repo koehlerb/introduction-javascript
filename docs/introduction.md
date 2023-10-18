@@ -6,6 +6,8 @@ sidebar_position: 1
 
 [Slides](pathname:///slides/loops.html)
 
+[Demo](pathname:///demos/loops.html)
+
 blah blah blah
 
 ```javascript
