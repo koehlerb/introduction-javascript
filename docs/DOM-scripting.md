@@ -4,6 +4,8 @@ sidebar_position: 9
 
 # Scripting with DOM
 
+## JavaScript.info
+
 - [Browser environment, specs](https://javascript.info/browser-environment)
 - [DOM tree](https://javascript.info/dom-nodes)
 - [Walking the DOM](https://javascript.info/dom-navigation)

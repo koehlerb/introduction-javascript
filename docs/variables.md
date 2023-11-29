@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Variables
 
-## FreeCodeCamp
+## freeCodeCamp
 
 - [Comment Your JavaScript Code](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/comment-your-javascript-code)
 - [Declare JavaScript Variables](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/declare-javascript-variables)

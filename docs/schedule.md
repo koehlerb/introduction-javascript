@@ -7,13 +7,16 @@ sidebar_position: 0
 <table>
   <thead>
     <tr>
-      <th>Week</th>
-      <th>CVS1 Tue</th>
-      <th>CVS2 Thu</th>
+      <th rowspan="2">Week</th>
+      <th colspan="3">Section</th>
+      <th rowspan="2">Topic</th>
+      <th rowspan="2">Readings</th>
+      <th rowspan="2">Evaluation</th>
+    </tr>
+    <tr>
+      <th>CVS1<br />Tue</th>
+      <th>CVS2<br />Thu</th>
       <th>DLU1</th>
-      <th>Topic</th>
-      <th>Readings</th>
-      <th>Evaluation</th>
     </tr>
   </thead>
   <tbody>

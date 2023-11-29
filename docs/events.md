@@ -4,6 +4,8 @@ sidebar_position: 10
 
 # Events and Event Handling
 
+## JavaScript.info
+
 - [Introduction to browser events](https://javascript.info/introduction-browser-events)
 - [Bubbling and capturing](https://javascript.info/bubbling-and-capturing)
 - [Event delegation](https://javascript.info/event-delegation)
