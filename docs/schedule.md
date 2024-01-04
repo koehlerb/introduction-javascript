@@ -4,6 +4,8 @@ sidebar_position: 0
 
 # Schedule
 
+This schedule is tentative and subject to change.
+
 <table>
   <thead>
     <tr>
@@ -26,7 +28,10 @@ sidebar_position: 0
       <td>Jan 11</td>
       <td></td>
       <td>Introduction, Debugging</td>
-      <td></td>
+      <td>
+        <a href="https://javascript.info/intro">An Introduction to JavaScript</a><br />
+        <a href="https://javascript.info/alert-prompt-confirm">Interaction: alert, prompt, confirm</a><br />
+      </td>
       <td></td>
     </tr>
     <tr>
@@ -51,7 +56,10 @@ sidebar_position: 0
       <td>
         <a href="/docs/functions">Functions</a>
       </td>
-      <td></td>
+      <td>
+        Quiz #1<br />
+        Assignment #1
+      </td>
     </tr>
     <tr>
       <td>4</td>
@@ -62,7 +70,10 @@ sidebar_position: 0
       <td>
         <a href="/docs/arrays">Arrays</a>
       </td>
-      <td></td>
+      <td>
+        Quiz #2<br />
+        Assignment #2
+      </td>
     </tr>
     <tr>
       <td>5</td>
@@ -74,18 +85,19 @@ sidebar_position: 0
         <a href="/docs/conditional-statements">Conditional Statements</a><br />
         <a href="/docs/loops">Loops</a>
       </td>
-      <td></td>
+      <td>
+        Quiz #3<br />
+        Assignment #3
+      </td>
     </tr>
     <tr>
       <td>6</td>
       <td>Feb 13</td>
       <td>Feb 15</td>
       <td></td>
-      <td>Object-Oriented Programming</td>
-      <td>
-        <a href="/docs/objects">Objects</a>
-      </td>
+      <td>Midterm</td>
       <td></td>
+      <td>Midterm</td>
     </tr>
     <tr>
       <td>7</td>
@@ -101,9 +113,14 @@ sidebar_position: 0
       <td>Feb 27</td>
       <td>Feb 29</td>
       <td></td>
-      <td>Midterm</td>
-      <td></td>
-      <td>Midterm</td>
+      <td>Object-Oriented Programming</td>
+      <td>
+        <a href="/docs/objects">Objects</a>
+      </td>
+      <td>
+        Assignment #4<br />
+        Project Proposal
+      </td>
     </tr>
     <tr>
       <td>9</td>
@@ -114,7 +131,10 @@ sidebar_position: 0
       <td>
         <a href="/docs/DOM-scripting">Scripting with DOM</a>
       </td>
-      <td></td>
+      <td>
+        Quiz #4<br />
+        Assignment #5
+      </td>
     </tr>
     <tr>
       <td>10</td>
@@ -125,7 +145,10 @@ sidebar_position: 0
       <td>
         <a href="/docs/events">Events and Event Handling</a>
       </td>
-      <td></td>
+      <td>
+        Quiz #5<br />
+        Assignment #6
+      </td>
     </tr>
     <tr>
       <td>11</td>
@@ -136,7 +159,10 @@ sidebar_position: 0
       <td>
         <a href="/docs/programming-HTML-CSS">Programming HTML and CSS</a>
       </td>
-      <td></td>
+      <td>
+        Quiz #6<br />
+        Assignment #7
+      </td>
     </tr>
     <tr>
       <td>12</td>
@@ -145,7 +171,9 @@ sidebar_position: 0
       <td></td>
       <td>Maintaining State</td>
       <td></td>
-      <td></td>
+      <td>
+        Quiz #7
+      </td>
     </tr>
     <tr>
       <td>13</td>
@@ -154,7 +182,10 @@ sidebar_position: 0
       <td></td>
       <td>Libraries and APIs</td>
       <td></td>
-      <td></td>
+      <td>
+        Quiz #8<br />
+        Project
+      </td>
     </tr>
     <tr>
       <td>14</td>

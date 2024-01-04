@@ -76,7 +76,7 @@ const config = {
             position: 'left',
             label: 'Notes',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/koehlerb/introduction-javascript',
             label: 'GitHub',
@@ -96,7 +96,7 @@ const config = {
               },
             ],
           },
-          {
+          /* {
             title: 'Community',
             items: [
               {
@@ -112,14 +112,14 @@ const config = {
                 href: 'https://twitter.com/docusaurus',
               },
             ],
-          },
+          }, */
           {
             title: 'More',
             items: [
-              {
+              /* {
                 label: 'Blog',
                 to: '/blog',
-              },
+              }, */
               {
                 label: 'GitHub',
                 href: 'https://github.com/koehlerb/introduction-javascript',
