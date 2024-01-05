@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+    Create a JavaScript application to produce property estimate.
+
+    Create a file, "app.js".
+
+    Add a script element to the bottom of this page to include "app.js".
+
+    In the "app.js" file, add the required statments to declare and
+    initialize the required variables and constants.
+
+    If you name a variable or constant that matches one of the id
+    attributes below, the "main.js" script will take care of injecting
+    the value of the variable or constant into the document.
+
+    Use the prompt() function to initialize variables for the:
+    - client name
+    - address
+    - city
+    - province
+    - postal code
+
+    Use the parseInt(prompt()) functions to initialize variables for the:
+    - lot area
+    - dwelling area
+    - number of batrooms
+    - number of kitchens
+
+    Estimate the value of the property as follows:
+    - each square foot of lot area contributes $50
+    - each square foot of dwelling are contibutes $200
+    - each bathroom contributes $10,000
+    - each kitchen contributes $25,000
+
+    Create any additional variables and constants that you think you 
+    need to complete the exercise.
+
+    Be sure to test the application with different values to convince
+    yourself that all of your arithmetic expressions are correct.
+  -->
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Estimate</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <header>
+      <h1>Property Estimate</h1>
+      <p id="clientMessage">Prepared for: John Doe</p>
+    </header>
+
+    <main>
+      <p>
+        <span id="address">123 Main St.</span><br />
+        <span id="city">Courtenay</span>
+        <span id="province">BC</span>&nbsp;&nbsp;<span id="postalCode"
+          >A1A 1A1</span
+        >
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lot Area (sq. feet)</td>
+            <td id="lotArea">8000</td>
+          </tr>
+          <tr>
+            <td>Dwelling Area (sq. feet)</td>
+            <td id="dwellingArea">2100</td>
+          </tr>
+          <tr>
+            <td># of bathrooms</td>
+            <td id="numberOfBathrooms">2</td>
+          </tr>
+          <tr>
+            <td># of kitchens</td>
+            <td id="numberOfKitchens">1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        <strong>Estimate: <span id="estimate">$650000</span></strong>
+      </p>
+    </main>
+
+    <footer>
+      <p>DGL 113 2024WI Demo #1: Variables, Numbers, and Strings</p>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

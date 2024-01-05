@@ -76,7 +76,7 @@ const config = {
             position: 'left',
             label: 'Notes',
           },
-          // {to: '/blog', label: 'Blog', position: 'left'},
+          { to: 'pathname:///demos/', label: 'Demos', position: 'left' },
           {
             href: 'https://github.com/koehlerb/introduction-javascript',
             label: 'GitHub',
@@ -94,6 +94,7 @@ const config = {
                 label: 'Notes',
                 to: '/docs/schedule',
               },
+              { to: 'pathname:///demos/', label: 'Demos', position: 'left' },
             ],
           },
           /* {

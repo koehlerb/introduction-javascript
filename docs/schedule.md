@@ -170,7 +170,10 @@ This schedule is tentative and subject to change.
       <td>Mar 28</td>
       <td></td>
       <td>Maintaining State</td>
-      <td></td>
+      <td>
+        <a href="https://javascript.info/cookie">Cookies</a><br />
+        <a href="https://javascript.info/localstorage">localStorage and sessionStorage</a>
+      </td>
       <td>
         Quiz #7
       </td>
@@ -181,7 +184,9 @@ This schedule is tentative and subject to change.
       <td>Apr 4</td>
       <td></td>
       <td>Libraries and APIs</td>
-      <td></td>
+      <td>
+        <a href="https://developers.google.com/maps/documentation/javascript/overview">Google Maps JavaScript API</a><br />
+      </td>
       <td>
         Quiz #8<br />
         Project
