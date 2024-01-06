@@ -26,7 +26,7 @@ This schedule is tentative and subject to change.
       <td>1</td>
       <td>Jan 9</td>
       <td>Jan 11</td>
-      <td></td>
+      <td>Jan 11</td>
       <td>Introduction, Debugging</td>
       <td>
         <a href="https://javascript.info/intro">An Introduction to JavaScript</a><br />
@@ -38,7 +38,7 @@ This schedule is tentative and subject to change.
       <td>2</td>
       <td>Jan 16</td>
       <td>Jan 18</td>
-      <td></td>
+      <td>Jan 18</td>
       <td>Basics, Numbers, Strings</td>
       <td>
         <a href="/docs/variables">Variables</a><br />
@@ -51,7 +51,7 @@ This schedule is tentative and subject to change.
       <td>3</td>
       <td>Jan 23</td>
       <td>Jan 25</td>
-      <td></td>
+      <td>Jan 25</td>
       <td>Functions</td>
       <td>
         <a href="/docs/functions">Functions</a>
@@ -65,7 +65,7 @@ This schedule is tentative and subject to change.
       <td>4</td>
       <td>Jan 30</td>
       <td>Feb 1</td>
-      <td></td>
+      <td>Feb 1</td>
       <td>Arrays</td>
       <td>
         <a href="/docs/arrays">Arrays</a>
@@ -79,7 +79,7 @@ This schedule is tentative and subject to change.
       <td>5</td>
       <td>Feb 6</td>
       <td>Feb 8</td>
-      <td></td>
+      <td>Feb 8</td>
       <td>Decisions and Loops</td>
       <td>
         <a href="/docs/conditional-statements">Conditional Statements</a><br />
@@ -94,7 +94,7 @@ This schedule is tentative and subject to change.
       <td>6</td>
       <td>Feb 13</td>
       <td>Feb 15</td>
-      <td></td>
+      <td>Feb 15</td>
       <td>Midterm</td>
       <td></td>
       <td>Midterm</td>
@@ -103,7 +103,7 @@ This schedule is tentative and subject to change.
       <td>7</td>
       <td>Feb 20</td>
       <td>Feb 22</td>
-      <td></td>
+      <td>Feb 22</td>
       <td><em>Reading Break (no class)</em></td>
       <td></td>
       <td></td>
@@ -112,7 +112,7 @@ This schedule is tentative and subject to change.
       <td>8</td>
       <td>Feb 27</td>
       <td>Feb 29</td>
-      <td></td>
+      <td>Feb 29</td>
       <td>Object-Oriented Programming</td>
       <td>
         <a href="/docs/objects">Objects</a>
@@ -126,7 +126,7 @@ This schedule is tentative and subject to change.
       <td>9</td>
       <td>Mar 5</td>
       <td>Mar 7</td>
-      <td></td>
+      <td>Mar 7</td>
       <td>Scripting with DOM</td>
       <td>
         <a href="/docs/DOM-scripting">Scripting with DOM</a>
@@ -140,7 +140,7 @@ This schedule is tentative and subject to change.
       <td>10</td>
       <td>Mar 12</td>
       <td>Mar 14</td>
-      <td></td>
+      <td>Mar 14</td>
       <td>Events and Event Handling</td>
       <td>
         <a href="/docs/events">Events and Event Handling</a>
@@ -154,7 +154,7 @@ This schedule is tentative and subject to change.
       <td>11</td>
       <td>Mar 19</td>
       <td>Mar 21</td>
-      <td></td>
+      <td>Mar 21</td>
       <td>Programming HTML and CSS</td>
       <td>
         <a href="/docs/programming-HTML-CSS">Programming HTML and CSS</a>
@@ -168,7 +168,7 @@ This schedule is tentative and subject to change.
       <td>12</td>
       <td>Mar 26</td>
       <td>Mar 28</td>
-      <td></td>
+      <td>Mar 28</td>
       <td>Maintaining State</td>
       <td>
         <a href="https://javascript.info/cookie">Cookies</a><br />
@@ -182,7 +182,7 @@ This schedule is tentative and subject to change.
       <td>13</td>
       <td>Apr 2</td>
       <td>Apr 4</td>
-      <td></td>
+      <td>Apr 4</td>
       <td>Libraries and APIs</td>
       <td>
         <a href="https://developers.google.com/maps/documentation/javascript/overview">Google Maps JavaScript API</a><br />
