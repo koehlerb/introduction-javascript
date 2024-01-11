@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Introduction</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Introduction
+---
+### Objectives
+After this module you should be able to:
+* Explain why learn JavaScript
+* Describe what JavaScript can do and cannot do
+* Describe the history of JavaScript
+* Use JavaScript in a web page
+* Explain graceful degradation and progressive
+  enhancement
+* Describe the tools needed for the course
+* Test JavaScript in browser console
+---
+### Why JavaScript?
+* Programming Language of the Web, one of the
+  most popular and in demand language:
+  * [10 Best Progamming Languages to Learn in 2024](https://www.guru99.com/best-programming-language.html)
+  * [Most used programming lanugages](https://www.statista.com/statistics/793628/worldwide-developer-survey-most-used-languages/)
+  * [Client-side ue of JavaScript](ttps://w3techs.com/technologies/details/cp-javascript/all/all)
+* It can enhance / enrich your website significantly,
+  and much more.
+---
+### History 
+* May 1995: Created by Brendan Eich at Netscape (now Mozilla)
+* Nov 1996: Netscape submitted JavaScript to European
+* Computer Manufacturers Association (ECMA)
+* June 1997: ECMAScript 1
+* ...
+---
+### History
+* 2009: ECMAScript 5
+* 2015: ECMAScript 6
+* Since 2015, every year there has been a new update. The
+  newest version is: ECMAScript 14 released in June 2023
+* [ECMAScript 2023 standard](https://ecma-international.org/publications-and-standards/standards/ecma-262/)
+* [ECMAScript version history](https://en.wikipedia.org/wiki/ECMAScript_version_history)
+---
+### What can JS do?
+* JavaScript's applications are continually growing.
+* It has traditionally worked with front-end of
+  websites, i.e., client scripting.
+* It has extended to server-side applications.
+* It can also program standalone applications and
+  mobile applications.
+---
+### What can JS do?
+On the client side its use can be categorized into two
+types, 1) enhancing the web page and 2) providing
+essential functionality that the web page can't do
+without.
+* JavaScript can make websites more interactive,
+  interesting, and user-friendly.
+* JavaScript lets you access and modify the content
+  and markup of web pages as the user is viewing
+  them.
+---
+### What can JS do?
+Here are just a few typical examples of its use on a
+website
+* Special effects and animations, https://adoratorio.studio/
+* Slideshows (carousel), http://wowslider.com/
+* Dropdown Menus
+* Form validation
+---
+### What can JS do?
+* Personalization of a website
+* Ajax, etc.
+* https://www.grandcircus.co/blog/10-things-you-can-build-with-javascript/
+---
+### What JS cannot do
+* It cannot directly access files on the server without
+  additional help
+* It cannot directly access files on the client machine
+* It cannot access web pages hosted on another
+  domain
+* JavaScript cannot protect your page source or
+  images.
+
+http://javascript.about.com/od/reference/a/cannot.htm
+---
+### Best Use of JavaScript
+![best use of JavaScript](best-use.png)
+---
+### Best Use of JavaScript
+* Use JavaScript to add features and enhance
+  user experience that html and CSS cannot do.
+* There are many uses of JavaScript on a
+  website.
+* Some examples are listed on the next slides
+---
+### Best Use of JavaScript
+* Handling use interactions—mouse/touch and
+  keyboard events.
+* Allowing rich UI features such as accordions, tabs,
+  and sliders (carousel).
+* Validating and processing user input on the client
+  side.
+---
+### Best Use of JavaScript
+* Producing complex animation & web games.
+* Updating page content without reloading the
+  whole page using AJAX.
+* Supporting server-side functions.
+---
+### Enahancement and Degradation 
+* Progressive enhancement and graceful
+  degradation are two commonly used web design
+  strategies.
+* Graceful Degradation: building a website that 
+  works best in a modern
+  browser that uses JavaScript, but still works to a
+  reasonable standard in older browsers, or if
+  JavaScript or some of its features are
+  unavailable.
+---
+### Enahancement and Degradation 
+* Progressive Enhancement:
+  building a web page from the ground up with a base
+  level of functionality, then adding extra
+  enhancements if they are available in the browser.
+---
+### Enahancement and Degradation 
+* When adding JS code to your webpage, need to
+  keep in mind which strategy to take.
+* Clearly separating the website into 3 layers serves
+  both strategies well.
+* https://www.w3.org/wiki/Graceful_degradation_versus_progressive_enhancement
+---
+### Enahancement and Degradation 
+* The `<noscript>` tag is commonly used to detect if JS
+  is enabled in the browser, so that you can present
+  the features to the user accordingly.
+```html
+  <noscript>
+    html code if JS is not supported
+  </noscript>
+```
+* [Example](/demos/week-01-noscript/)
+---
+### Disabling JS in Firefox
+1. Open a new tab 
+1. Type `about:config` in the address bar 
+1. Accept the risk 😬 and continue
+1. Type `javascript.enabled` in the search box
+1. Click the toggle next to `javascript.enabled`
+1. Return to your original tab and refresh
+1. Toggle back when you are done testing
+---
+### Disabling JS in Chrome
+1. Go to Menu > Settings > Privacy & Security > Site Settings > Content > JavaScript 
+1. Select the option "Don't allow sites to use JavaScript"
+1. Return to your orginal tab and refresh
+1. Select "Sites can use JavaScript" when you are done testing
+---
+### DOM and BOM Basics
+* The figure on the next slide shows the Browser
+  Object Model (BOM) Structure.
+* `window` is the object representing the
+  browser window, which has many
+  child objects.
+* `document` represents the current html
+  document in the browser window. A
+  Document Object Model (DOM) is a
+  conceptual way of visualizing a
+  document and its contents, which will
+  be discussed further later in the
+  course.
+---
+### DOM and BOM Basics
+![BOM](bom.png)
+---
+### DOM and BOM Basics
+* Each object has certain properties and methods. To
+  access them, dot . notation is used.
+```javascript
+window.alert('hi, there!');
+window.document.write('welcome to the page!');
+```
+---
+### DOM and BOM Basics
+* Since there is only one window object in the
+  environment, it can be omitted. The following
+  statement produces the same result as the previous
+  ones.
+```javascript
+alert('hi, there!');
+document.write('welcome to the page!');
+```
+---
+## Adding JavaScript to a Web Page 
+---
+### Adding JS Code to a Page 
+* You use the `&lt;script&gt;` tag to add JavaScript code to a
+  webpage.
+* You can just add JavaScript code between the
+  opening and closing script tags.
+* Script tag can appear anywhere in the page.
+* Common places are
+  * the head section
+  * right above `&lt;/body&gt;`, and
+  * the location where JS code is needed
+---
+### Adding JS Code to a Page 
+* JavaScript runs where it is in the html
+  doc.
+* When the browser encounters a
+  `&lt;script&gt;` element it:
+  * Stops other activities to load the script.
+  * Runs the JS code.
+---
+### Simple JS Statements
+* Write html or text in place
+```javascript
+document.write('some text here');
+```
+* The string may include html markup
+* Show a popup message
+```javascript
+alert('Hi!');
+```
+* Prompt the user for input:
+```javascript
+let input = prompt('Proceed?');
+```
+* `input` is a variable to store the user input.
+---
+[Next page](/slides/introduction/page2.html)
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>
