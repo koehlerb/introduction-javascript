@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Introduction (page 2)</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+### Simple JS Statements
+Example
+1. Create an example page
+1. Use `document.write()` to add content to the
+   page body
+1. Preview the page
+
+Note : JavaScript is a case sensitive language. Pay attention to spelling and case.
+---
+### Adding JS Code to a Page
+Practice
+1. Add the JS code to a middle section using
+   `alert()`
+1. Preview the page
+
+You will see the popup message before the
+remaining page content is loaded.
+---
+### Adding JS Code to a Page
+Practice
+1. Add the `alert()` JS code to the end of the page
+   but before `&lt;/body&gt;`
+1. Preview the page
+
+Do you see any difference between
+putting the JS code at the 3 locations?
+---
+### Where to Put JS on a Web Page 
+* JavaScript can appear anywhere in a page.
+  We showed 3 locations where you may put
+  the JS code.
+* Among the different locations, which one
+  is better?
+---
+### Where to Put JS on a Web Page 
+* Unless you use JavaScript code to create
+  the page content, the location at the end of
+  the page but above the `&lt;/body&gt;` tag is
+  generally preferred.
+* http://stackoverflow.com/questions/383045/is-put-scripts-at-the-bottom-correct
+* http://stevesouders.com/examples/rule-js-bottom.php
+---
+### Accessing HTML Elements
+* if you set the `id` attribute of an HTML element in a page,
+  there is a JavaScript object available with the same name
+* you can set properties on this object to change it
+HTML
+```html 
+<h1 id="myHeading">Sandbox</h1>
+```
+JavaScript
+```javascript 
+myHeading.textContent = 'This is a different heading'
+```
+---
+### Separating JS from HTML 
+* As with CSS, we also like to separate JS
+  code from the html code so that it can be
+  better reused and maintained.
+* Use the script tag's src attribute to do it:
+```javascript
+<script src="url for the JS code file"></script>
+```
+* In this case, anything between `&lt;script&gt;` and
+  `&lt;/script&gt;` will be ignored.
+---
+### Linking to a JS File 
+* In the html file replace the original script
+  element with
+```HTML
+<script src="js/example.js"></script>
+```
+* In js/example.js file, create this code,
+```javascript
+alert('Welcome to JavaScript!');
+```
+---
+### Linking to a JS File 
+1. External JavaScript files are preferred
+   than the embedded JS code in HTML
+   page.
+1. Unless you use JavaScript code to
+   create the page content, put the
+   `&lt;script&gt;` element right above
+   `&lt;/body&gt;`
+---
+## Tools for the Course
+---
+### Tools for the Course
+* Up to date web browsers - Chrome, Firefox,
+  or Safari.
+* A code editor such as VS Code with proper
+  extensions.
+* GitHub for version control and source code
+  hosting - discussed in a separate document
+  and video.
+* NodeJS - optional but recommended.
+---
+### Browser Developer Tools
+* similar to the tools used in DGL 103
+* For DGL113, we will primarily use:
+  1. Console tool to run and test simple JS code.
+  1. Debugging tool to debug JS code in a
+     webpage at runtime.
+---
+### NodeJS 
+* NodeJS is a standalone JavaScript runtime
+  (does not require a web browser)
+* NodeJS is used for many applications such
+  as backend web applications 
+* we will use in conjunction with Jest for 
+  automated assignment testing
+---
+### Summary 
+* JavaScript purpose and concepts
+* How and where to add JavaScript to a web page
+* Tools needed for DGL113
+---
+### Summary 
+* Simple JavaScript instructions:
+  * `alert()` to display a message
+  * `prompt()` to get a user input
+  * `document.write()` to produce an output to the webpage
+  * accessing properties of elements by their `id` attibute object
+                  </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

@@ -27,7 +27,10 @@ This schedule is tentative and subject to change.
       <td>Jan 9</td>
       <td>Jan 11</td>
       <td>Jan 11</td>
-      <td>Introduction, Debugging</td>
+      <td>
+        <a href="pathname:///slides/introduction/">Introduction</a>, 
+        <a href="pathname:///slides/debugging/">Debugging</a>
+      </td>
       <td>
         <a href="https://javascript.info/intro">An Introduction to JavaScript</a><br />
         <a href="https://javascript.info/alert-prompt-confirm">Interaction: alert, prompt, confirm</a><br />

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Debugging</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Debugging
+---
+### Objectives
+* Describe the types of errors that may occur
+  with JavaScript code
+* Use IDE tools to debug JavaScript code
+* Use Browser Developer tools to debug JS code
+---
+### Error Types 
+* System error ― caused by the system or
+  external devices with which the program is
+  interacting.
+* Programmer error ― the program contains
+  incorrect syntax or faulty logic.
+* User error ― user entered data incorrectly,
+  which the program is unable to handle.
+---
+### Error Types 
+* Compile-Time Errors
+  * Syntax error - e.g., misspell a reserved word
+  * Semantic Error — improper use of program
+    statements
+* Run-Time errors - e.g, division by 0
+* Logical Errors—program does not provide the
+  correct result.
+---
+### Syntax Errors
+* Syntax errors are grammatical errors and are
+  usually flagged by the IDE before the code is
+  executed.
+* Syntax errors should be avoided and
+  minimized.
+* A good IDE / Editor can detect and flag
+  syntax errors.
+---
+### Common Syntax Errors
+1. Missing, mismatching , misplacing braces,
+   quotes or apostrophes
+1. Missing parentheses where needed
+1. Mismatching cases—JS is case sensitive
+1. Using reserved words for variable names,
+  http://www.W3schools.Com/js/js_reserved.Asp
+---
+### Other Common Errors
+1. Not declaring variables before use
+1. Confusing concatenation and addition
+1. Referencing objects before they are loaded
+   or don't not exist
+1. Missing parameter on function calls
+---
+### Use Strict Mode
+* Strict Mode is a feature added to ECMAScript 5
+  that flags more exceptions and warnings.
+* It prohibits the use of some deprecated
+  features, e.g., it requires that all variables must
+  be declared before use.
+* invoke strict mode by adding the following statement 
+  at the top of your script: 
+```javascript 
+'use strict';
+```
+---
+### IDE JS Support
+1. The IDE we use, VS Code with proper extensions,
+   has good JavaScript Support.
+1. Provides code hint when a . is provided after an
+   object name.
+1. Provides balanced () and {}.
+1. Color code components of JavaScript.
+1. Flag errors with red color, though may not pinpoint
+   the exact error type or location.
+1. Code collapse.
+---
+## Testing and Error Debugging
+---
+### Debugging with Browsers
+* All modern browsers have developer tools to
+  help you debug JS code.
+* For both Windows and Mac OS, R-click in the
+  browser window | Inspect or Inspect Element.
+* You may also install Firebug extension, which
+  may provide some more information.
+---
+### Debugging with Browsers
+![debugging with browsers](browser-debugging.png)
+---
+### Debugging with Browsers
+* `alert()` method
+* `console` object
+* Debugging tools such as breakpoints
+* Error objects
+* Throw exceptions (optional)
+```javascript 
+throw new Error('error message')
+```
+---
+### JS Code Execution & Exceptions
+* Understanding how scripts are processed is
+  helpful to find the source of an error.
+* The JavaScript interpreter processes code one line
+  at a time.
+* If a JavaScript statement generates an error, it
+  throws an `exception`.
+
+---
+### JS Code Execution & Exceptions
+* When an exception is thrown, an `Error`
+  object is created.
+* `Error` objects help you find where your errors
+  are.
+* Browsers have tools to help you read them.
+
+---
+### Error Objects
+| Property     | Description             |
+|--------------|-------------------------|
+| `name`       | type of error           |
+| `message`    | description of error    |
+| `fileName`   | name of JavaScript file |
+| `lineNumber` | line number of error    |
+---
+### Debugging with Console
+* You can just type code into the console, and it will
+  show the code execution result.
+* The `console.log(...)` method will evaluate
+  the expression in parentheses and 
+  write the result to the browser's
+  console as the statement is processed.
+---
+### Debugging with Console
+```javascript 
+console.log('Found an error in the code');
+console.log('3 + 5 =' + (3+5));
+console.log(alert('3 + 5 =' + (3+5)));
+```
+---
+### Debugging with Console
+* These methods show messages like `log()` but
+  have a slightly different style:
+```javascript
+console.info(...);
+console.warn(...);
+console.error(...);
+```
+* You can write arrays and object data into a table
+  with:
+```javascript
+console.table(objectname);
+```
+---
+### Debugging with Chrome Sources 
+* Breakpoints let you pause the script on any line,
+  you can then check the values stored in variables.
+* For Chrome, Inspect / Dev Tools | Sources | show
+  JS Code.
+* Click on the line number will enable/disable
+  breakpoint on the line.
+* Hover on a variable name will show the value of
+  the variable.
+---
+### Debugging with Chrome Sources 
+* If you have several breakpoints or debug multiple
+  lines of code, you can step through them one by
+  one.
+![stepping](stepping.png)
+---
+### Debugging Minified Code 
+1. use step into to get into the minified code.
+1. click on the “Pretty print” { } at the bottom of
+   the code pane on the debugger window.
+            </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>
