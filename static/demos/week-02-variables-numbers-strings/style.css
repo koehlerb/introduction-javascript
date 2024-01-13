@@ -1,3 +1,11 @@
-th, td {
+th,
+td {
   text-align: right;
+}
+
+section {
+  margin-bottom: 1em;
+  float: left;
+  min-width: 10em;
+  max-width: 20em;
 }
