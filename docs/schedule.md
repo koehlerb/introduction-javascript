@@ -42,7 +42,7 @@ This schedule is tentative and subject to change.
       <td>Jan 16</td>
       <td>Jan 18</td>
       <td>Jan 18</td>
-      <td>Basics, Numbers, Strings</td>
+      <td><a href="pathname:///slides/variables-numbers-strings">Variables, Numbers, and Strings</a></td>
       <td>
         <a href="/docs/variables">Variables</a><br />
         <a href="/docs/numbers">Numbers</a><br />

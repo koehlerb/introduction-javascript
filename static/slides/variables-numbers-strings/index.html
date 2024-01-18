@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Variables, Numbers, and Strings</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Variables, Numbers and Strings
+---
+### Objectives
+* Using variables
+* write JS code using the numeric types.
+* convert between number types.
+* Working with operators
+* use Boolean data types.
+* explain the meaning of null and undefined
+---
+### Objectives
+* define and use strings.
+* use escape sequences.
+* manipulate strings using string methods.
+* use template strings.
+---
+## Statements and Comments
+---
+### Statement
+* Each individual instruction in a script is called a
+  statement.
+* Each statement should end with a semi-colon ;
+```javascript
+document.write('Welcome!') ;
+```
+---
+### Comment 
+* You use **comments** to explain what your code
+  does.
+* They help yourself remember it and help others
+  understand it.
+```javascript
+// single line comment
+/* multiple line comment. 
+     Text here
+     is ignored by 
+     JS Interpreter. */
+```
+---
+### Reserved Words 
+* Reserved words have predefined meanings in
+  JavaScript.
+* Cannot be used to name variables and the like
+  such as function parameters and object
+  properties.
+* NOTE - JavaScript is a case sensitive language.
+  Name and name are different.
+---
+### Reserved Words 
+```text
+break case catch class const continue debugger default 
+delete do else export extends false finally for function 
+if import in instanceof new null return super switch 
+this throw true try typeof var void while with let static
+yield await enum implements interface package private 
+protected public abstract boolean byte char double final 
+float goto int long native short synchronized throws 
+transient volatile arguments as async eval from get of set
+```
+---
+## Variables
+---
+### Variables 
+* Scripts often need to store data temporarily in
+  order to complete certain tasks.
+* A variable is just a named storage space. Data is
+  stored in variables.
+* A variable should be declared before you use it:
+```javascript
+var quantity; //prior ES6
+let price;    //variable
+const ratio;  //constant
+```
+---
+### Variables
+* `let` and `const` are new to ES6 and are better
+  options than `var`. So, use `let` or `const` instead of
+  `var`.
+* When declaring a variable, no data type is
+  specified.
+* The data type of a variable is determined by the
+  value it's assigned.
+---
+### Variable Declaration 
+* By default, JavaScript doesn't require variable
+  declaration before use.
+* However, it's a good practice to declare all variables
+  before use.
+* To enforce that, add "use strict" at the beginning of
+  each js file.
+```javascript 
+'use strict';
+```
+---
+### Strict Mode
+* strict mode has other features
+* https://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+---
+### Constant and Variable Naming
+* A JS constant / variable name can start with any
+  upper- or lower-case letter, an underscore, `_`, or
+  dollar character, `$`.
+* A variable name may contain digits but not start
+  with a digit.
+* NOTE - use `_` and `$` with caution, as `_` commonly
+  means a private variable and `$` is used by jQuery
+---
+### Constant and Variable Naming 
+```javascript
+let   product;        // ok
+const _ratio;         // ok
+let   $name = 'John'; // ok 
+let   price1;         // ok
+let   1price;         // NOT ok
+```
+---
+## Data Types and operators
+---
+### Data Types
+* string: `'product name'`
+* number: `3.5`
+* bigint for integer numbers of arbitrary length.
+* boolean: `true` / `false`
+* undefined
+* null
+* symbol (new to ES6), and
+* object
+---
+### Data Types
+* When you declare a variable, no data type is
+  required.
+* Same value could be interpreted as different
+  types under different context.
+* `typeof` operator is used to check a value's type
+```javascript
+typeof 3.5
+```
+---
+### Data Types
+![typeof](typeof.png)
+---
+### Numerical Values
+* In addition to integers and floating-point values,
+  JS also supports hexadecimal (16 based), binary,
+  and octal (8 based) numbers using the following
+  prefix (the first char is zero, the 2nd is a letter)
+* `0x` hexadecimal, e.g., `let x = 0xff;`
+* `0b` binary, e.g., `let x = 0b111;`
+* `0o` octal, e.g., `let x = 0o777;` some browsers may allow you
+  to save the 2nd char o.
+---
+### Primitive Values with Methods 
+* A method is an operation / function that can be
+  applied to an object.
+* Different from other languages, JavaScript allows
+  primitive values to use methods.
+* e.g. `.toFixed(n)` converts a number to a string with 
+  a fixed number of decimal places
+```javascript
+let w = 2.22, h = 4.33;
+let area = w * h;       // 9.6126
+area = area.toFixed(2); // '9.61'
+(9.6126).toFixed(2);    // also works
+```
+---
+### Arithmetic Operators
+* All regular arithmetic operations are supported by
+  JavaScript: `+ - * /`
+* `**`: exponentiation (new to ES201)
+* `++`: increment
+* `--`: decrement
+* `%`: modulo (remainder)
+
+```javascript
+let x = 2; x = x ** 3;     // x has the value 8 now
+let x = 5; x++;            // x has the value 6 now
+let x = 5; x--;            // x has the value 4 now
+let x = 10; let y = x % 3; // y has value 1
+```
+---
+### Compound Assignment Operators
+* You can combine an arithmetic operator and the
+  assignment operator to achieve the compound
+  effect.
+```javascript
+let x = 2, y =3;
+x += y;  // x has 5 now
+x -= 2;  // x has 3 now
+x *= 3;  // x has 9 now
+x /= 2;  // x has 4.5 now
+y **= 2; // y has 9 now
+```
+---
+### Modulo Operator 
+* `%` modulo operation is typically applied to
+  integers. The result is the remainder of a
+  division operation.
+* When negative values involved, the result goes
+  with the sign of the dividend (the left operand).
+* You may also apply `%` to floating point values. In
+  that case, both values will be treated as integers.
+```javascript
+let x = 5.0 % 2.0; // x has 1
+let y = 5.5 % 2.0; // y has 1.5
+```
+---
+### Type Coercion 
+* If operands in an operation are different types,
+  JavaScript will try to convert one operand to an
+  equivalent value of the other operand's type, such
+  as in: `'2' * 5`
+* Don't depend on type coercion as it may create
+  confusion, e.g., `'2' + 5`
+---
+### Boolean Type
+* Boolean type data can have one of the two values
+  - `true` or `false`
+* JavaScript interprets any nonzero numerical value
+  as `true` and zero as `false`. All following values are
+  also false:
+  * `false`
+  * `undefined`
+  * `null`
+  * `0` (zero)
+  * `NaN`
+  * `''` (empty string)
+---
+### null vs. undefined
+* `null` represents a valid but nonexistent value. For
+  example, `getElementById()` returns `null` if there is
+  no element returned. It's equivalent to `0` for a
+  numerical value and `false` for a Boolean value.
+* The `undefined` value indicates that a variable has
+  been declared but not been assigned a value.
+* `null`, `undefined`, and `''` are all considered `false`
+  when evaluated to a logical value. Other than that,
+  they are not the same at all.
+---
+### Number Object and Methods
+* `Number` object can be used to check and convert a
+  numerical value.
+* `Number.isNaN(value)` - `NaN`: Not a Number; an
+  undefined value or value that cannot be represented,
+  especially results of floating-point calculations.
+* https://developer.mozilla.org/en-US/docs/Glossary/NaN
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN
+---
+### Number Object and Methods
+```javascript
+Number.isNaN(0 / 0);    // true; 0/0 is undefined
+Number.isNaN(5/0);      // false; 5/0 is infinity
+Number.isNaN(3 * 'hi'); // true
+Number.isNaN('abc');    // false; a string doesn't fit the
+                        // definition.
+```
+---
+### Number Object and Methods
+* `Number.isInteger(value)`
+* `Number.isFinite(value)`
+* `Number('digitString')` - converts the digit string to a
+  numerical value or returns NaN if not convertible.
+---
+### Number Object and Methods
+```javascript  
+Number.isInteger(123);   // true
+Number.isInteger('123'); // false
+Number.isFinite(10);     // true
+Number.isFinite(10/0);   // false
+Number('10')             // 10
+Number('10am')           // NaN
+```
+---
+### Number Object and Methods
+* `Number.parseFloat(str)` and
+  `Number.parseInt(str)` convert the string to a
+  numerical value.
+* The difference between these two methods and
+  `Number()` is: if the string starts with a digit, these
+  two methods will extract the numerical portion
+  until the first non-digit character
+---
+### Number Object and Methods
+```javascript
+Number.parseInt('10px');     //returns 10
+Number.parseInt('10.5em');   // returns 10
+Number.parseFloat('10.5em'); // returns 10.5
+Number('10.5em');            // returns NaN  
+```
+---
+### Number Object and Methods
+* Some methods mentioned are also global, i.e.,
+  they can be used without any object involved
+  (`window` is the implicit object).
+* Adding these methods to the `Number` object is new to
+  ES6 and it is generally preferred to use them
+  instead of the global ones.
+* NOTE - occasionally, the global and `Number`
+  methods such as `isNaN()`, produce inconsistent
+  results
+---
+## Characters and Strings
+---
+### Strings
+* String is a primitive type in JavaScript.
+* You can assign a string literal to a variable or use
+  `String` constructor to make a new string object.
+Examples
+There are differences between these two methods.
+The first method is generally preferred.
+https://stackoverflow.com/questions/17256182/what-is-the-difference-between-string-primitives-and-string-objects-in-javascrip
+---
+### Strings
+```javascript
+let str1 = 'Hello';
+let str2 = new String('Hello'); //constructor is
+                                // used
+```
+---
+### Strings
+* Use back slash `\` to escape a char in a string.
+  Escaping means making a regular char after `\`
+  special and making a special char after `\` literal.
+---
+### Concatenating Strings 
+* The `+` operator is used to join strings.
+```javascript
+let greeting = 'Hello ';
+let name = 'Bob';
+let message = greeting + name;
+```
+* A string can be expanded like this
+```javascript
+message = message + "! It's a great day!";
+```
+* `concat()` method can do the same job but `+`
+  and `+=` are recommended.
+---
+### Using String Methods 
+* `.indexOf(subStr, n)` Returns the index of the first subStr in the string starting with index n
+* `.lastIndexOf(subStr, n)` Return the index of the last subStr in the string where index <= n
+* `.repeat(n)` Returns a new string with n copies of the string
+* `.replace(str1, str2)` Replaces str1 with str2 in the string
+---
+### Using String Methods 
+* `.split('delimiter')` Splits the string into an array of substrings, and returns the new array
+* `.substr(i, n)` Extracts a substring of n chars from the string, starting from index I
+* `.toLowerCase()` Converts all letters in the string to lowercase letters
+* `.toUpperCase()` Converts all letters in the string to uppercase letters
+---
+### Template Strings
+* We used `+` or `concat()` to build strings when
+  variables are involved, which could be tedious and
+  error prone.
+* Template string encloses its content using
+  backticks \` , the key under esc on your keyboard,
+  not the standard apostrophe.
+* Template string extracts variable values enclosed in
+  it with the format of `${variable}`.
+* You can use standard quotation marks in a
+  template string without escaping them.
+---
+### Template Strings
+* Template string can also embed an expression in
+  the string, i.e., `${expression}`.
+```javascript
+let total = 10;
+let tax = 1.2;
+msg = `The total is $${total + tax} ($${total} + $${tax} tax).`;
+alert(msg); // 'The total is $11.2 ($10 + $1.2 tax)'
+```
+---
+### Summary 
+* Writing JavaScript statements
+* Using variables and constants
+* Working with different data types - such as
+* numerical, Boolean, characters and strings
+* Working with operators
+---
+### References
+1. https://introduction-javascript.bkoehler.imgd.ca/docs/schedule
+1. https://javascript.info/first-steps (sections 1~8)
+1. https://javascript.info/number
+1. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
+1. https://www.w3schools.com/js/
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>
