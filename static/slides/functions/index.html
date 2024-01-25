@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Functions</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Functions
+---
+### Objectives
+* use predefined functions / methods.
+* create user defined functions.
+* call / execute / invoke functions.
+* pass values into a function.
+* return a values from a function
+---
+### Objectives
+* give function parameters default values.
+* Use functions for event handling
+* create anonymous functions.
+* explain the scope of variables.
+---
+## Concepts and Built-in Functions
+---
+### Function Concepts
+* Functions let you group statements together to
+  perform a specific task—organize your code.
+* Functions are reusable.
+* Functions make code easier to debug and
+  maintain.
+* Functions need to be called to run its statements
+* When a function belongs to an object, it’s
+  called a method.
+---
+### Funciton vs. Method
+* Methods are functions that "belong" to a
+  specific object.
+```javascript
+document.write('Good morning');
+```
+* In this case, write() is a method that belongs
+  to document object, though it behaves like a
+  function.
+---
+### Built-in Functions and Methods
+* Other than `document.write()`, we have used
+  many other JavaScript built-in methods
+  (functions), such as `alert()`, `console.log()`,
+  `Number.parseInt()`, etc.
+---
+### Built-in Functions and Methods
+* JS has a Math object that contains many useful
+  functions / methods.
+* https://www.w3schools.com/js/js_math.asp
+---
+### Math Methods
+* `Math.random()` Returns a decimal value from 0 to 1 excluding 1
+* `Math.round(x)` Returns `x` rounded to its nearest integer
+* `Math.ceil(x)` Returns `x` rounded up to its nearest integer
+* `Math.floor(x)` Returns `x` rounded down to its nearest integer
+---
+### Exercise
+* Produce a random integer value between 1 and 100 inclusive.
+---
+## User Defined Functions
+---
+### Creating a Function
+![creating a function](creating-function.png)
+---
+### Calling a Function
+* Calling a function is also known as
+  function invocation.
+
+![creating a function](calling-function.png)
+
+* A function can be used to handle events.
+```html
+<button onclick="greeting()">Greet</button>
+```
+---
+### Return Values
+* Every function returns a value - done with
+  the return statement.
+```javascript
+function hello() {
+    return 'Hello World!';
+}
+const message = hello();
+```
+* If a function doesn't explicitly return any
+  value, it returns `undefined`.
+---
+### Functions with Inputs
+* *Parameters* and *arguments* are terms used to
+  represent data provided for the function as
+  inputs.
+* *Parameters* are set when the function is
+  defined.
+* When a function is invoked, the inputs
+  provided to the function are called *arguments*.
+* *Parameters* and *arguments* don't need to be
+  named the same.
+---
+### Function with Inputs
+![function with inputs](function-inputs.png)
+---
+### Function with Inputs
+* When you need a function to execute, you
+  make a function call and provide the values for
+  the function parameters - *arguments*.
+
+![function with inputs](function-arguments.png)
+---
+### Function Call as Argument 
+* A function call can also be used as an
+  argument for another function call.
+```javascript
+let wall = getArea(3, 5);
+alert(wall);
+```
+* The above 2 statements are the same as the
+  following:
+```javascript
+alert(getArea(3, 5));
+```
+* First, `getArea(3,5)` is called, then the returned value is
+  passed into `alert`.
+---
+### Functions with Inputs
+* If an argument is missing when the function is
+  invoked, it will be given a value of undefined.
+```javascript
+let wall = getArea(3);
+```
+* Due to the missed argument, the function will
+  return `NaN`.
+* If extra arguments are provided when a
+  function is invoked, the function will work as
+  normal, and the extra arguments will be
+  ignored.
+---
+### Default Parameters 
+* Default parameters are values to be used by
+  the function if no arguments are provided
+  when it is invoked.
+* Simply assign the default value
+  to the parameter in the function definition.
+```javascript
+function hello(name='World') {
+    console.log('Hello ' + name);
+}
+hello();
+hello('John');
+```
+---
+### Default Parameters 
+* Function definition
+```javascript
+function discount(price, amount = 10) {
+    return price * (100 - amount) / 100;
+}
+```
+* Function call
+```javascript
+const actualPrice = discount(100, 15); // or
+const actualPrice = discount(100);
+```
+---
+### Default Parameters 
+* When a function is called, the argument values
+  are assigned to parameters from left to right.
+* As a common practice, the default values are
+  used for the trailing parameters.
+---
+## Functions as Event Handlers
+---
+### Functions as Event Handlers
+* We encountered simple mouse click event in
+  the last module and used embedded code to
+  respond to the event.
+* In practice, a function is commonly used for
+  handling an event.    
+---
+### Functions for Event Handling
+```html
+<input type="button" value="Start" onclick="handler()">
+```
+```javascript
+function handler() {
+  alert('... process started ...');
+  // other event handling code
+}
+```
+* We will learn more event handling in a later
+  module.
+---
+### Variable Scope
+* The range of JS code in which a variable is
+  visible / accessible is known as the scope of the
+  variable.
+* *Global variables*: declared with var outside of
+  any function; their scope is the whole file or
+  web page.
+* *Local variables*: declared in a function and only
+  visible in the function; they have a local scope.
+---
+### Variable Scope
+* Before ES6, it has only global scope and local
+  scope.
+* ES6 added a new block scope. A code section
+  in `{}` is called a block.
+---
+### Variable Scope
+```javascript
+  var a = 10; var b = 10;
+
+  function varScope() {
+    var a = 20; // declare a new local variable 'a'
+    b = 20; // change the value of global variable 'b'
+    return "Local variable 'a' = " + a + 
+           "\nGlobal variable 'b' = " + b;
+  }
+
+  var message = varScope();
+  alert(message + "\nGlobal variable 'a' = " + a);
+```
+---
+### Variable Scope - this keyword
+* When used inside an event handler, ”this”
+  refers the object that the event handler is
+  attached - to be discussed later.
+* When use "this inside a function, it refers the
+  "owner" of the function. In the example on the
+  next slide, it's the window. For other options,
+  ref. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
+---
+### Variable Scope - this keyword
+```javascript
+  var a = 10, b = 10; // global variables.
+
+  function varScope() {
+    var a = 20; // declare a new local variable 'a'
+    b = 20; // change the value of global variable 'b'
+    return "this.a = " + this.a + 
+           "\nLocal variable 'a' = " + a + 
+           "\nGlobal variable 'b' = " + b;
+  }
+
+  let message = varScope();
+  alert(message + "\nGlobal variable 'a' = " + a);
+```
+---
+### Variable Scope - this keyword
+* NOTE - the global variable a declaration in the
+  last example should be done with `var` but not
+  `let` and strict mode is not in force, otherwise,
+  `this.a` won't work as expected.
+* https://stackoverflow.com/questions/39414692/a-javascript-let-global-variable-is-not-a-property-of-window-unlike-a-global
+* Due to the complexity of “this” in JS, avoid it
+  except in an event handler.
+---
+### Function Hoisting
+* *Hoisting*: move variable and function
+  declarations to the top of the current scope,
+  regardless of where they are defined.
+* Function declarations are automatically
+  hoisted in JS. That means, a function can be
+  called above its definition.
+---
+### Function Hoisting
+* Variable initialization and assignment are not
+  hoisted. For example, given the code below,
+```javascript
+  document.write("Your name is:" + name);
+  var name = prompt("Your name please: ");
+```
+* the first line will not trigger an error, but it
+  won't show the value entered by the user in
+  the second line.
+---
+### Variable Hoisting
+* Variables declared with `let` and `const` are not
+  hoisted. For example, the first line of the
+  following code will trigger an error,
+```javascript
+document.write("Your name is:" + name);
+let name = prompt("Your name please: ");
+```
+* General guideline is to declare a variable
+  before using it. Therefore, variable hoisting is
+  not recommended; `let` and `const` should be
+  used instead of `var`.
+---
+### References
+1. https://javascript.info/function-basics
+1. https://www.w3schools.com/js/js_math.asp
+1. https://www.w3schools.com/js/js_functions.asp
+1. https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

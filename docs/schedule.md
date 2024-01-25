@@ -55,7 +55,7 @@ This schedule is tentative and subject to change.
       <td>Jan 23</td>
       <td>Jan 25</td>
       <td>Jan 25</td>
-      <td>Functions</td>
+      <td><a href="pathname:///slides/functions">Functions</a></td>
       <td>
         <a href="/docs/functions">Functions</a>
       </td>
