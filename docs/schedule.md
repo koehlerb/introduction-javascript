@@ -69,7 +69,7 @@ This schedule is tentative and subject to change.
       <td>Jan 30</td>
       <td>Feb 1</td>
       <td>Feb 1</td>
-      <td>Arrays</td>
+      <td><a href="pathname:///slides/arrays">Arrays</a></td>
       <td>
         <a href="/docs/arrays">Arrays</a>
       </td>

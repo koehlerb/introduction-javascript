@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Methods</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <header>
+      <h1>Array Methods</h1>
+      <p>DGL 113</p>
+    </header>
+
+    <main>
+      <p>
+        <label>New Value:</label>
+        <input type="text" id="newValue" />
+      </p>
+      <p>
+        <button type="button" id="pushB">push(newValue)</button>
+        <button type="button" id="popB">pop()</button>
+        <button type="button" id="shiftB">shift(newValue)</button>
+        <button type="button" id="unshiftB">unshift()</button>
+      </p>
+      <p>Old Value: <span id="oldValue"></span></p>
+      <table>
+        <thead>
+          <tr>
+            <th>i</th>
+            <th>arr[i]</th>
+          </tr>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+    </main>
+
+    <footer>
+      <p>DGL 113 Array Methods</p>
+    </footer>
+    <script src="main.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

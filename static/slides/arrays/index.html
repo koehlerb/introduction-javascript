@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Arrays</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Arrays
+---
+### Objectives
+* explain array concepts
+* declare and populate arrays
+* manage array contents
+* iterate through an array
+* use common array methods
+* work with m-dimensional arrays
+* incorporate arrays in a web application
+---
+### Arrays
+* An array is a special type of object. It stores a list
+  of values under a single name.
+* Create an empty array:
+```javascript
+let myArray = []; //array literal notation
+let myArray = new Array(); //not recommended
+```
+* Create an array with initial values:
+```javascript
+let myArray = ['item1','item2','item3']; // or
+let myArray = [10,20,30];
+```
+* A JS array can contain different types of data,
+  even another array:
+```javascript
+const mixedArray = [null,1,[],'two', true];
+```
+---
+### Using Array Index
+* How to access an item in an array?
+  Using its index value. The first item's index is 0;
+  example:
+```javascript
+alert(myArray[2]);
+```
+* Adding/replacing a value in an array
+```javascript
+myArray[0] = 10;
+```
+* Technically you can add a value to any position in
+  an array, e.g., `myArray[10] = 100;`
+* The index positions that don't have a value
+  assigned will have the value "undefined".
+---
+### Using Array Index
+* You may sometimes use a string as index. When a
+  string is used for array index, it's called an associative
+  array.
+* JavaScript doesn't support associative arrays.
+* When a string is used for an array index, it will
+  change the nature of the array (to an object).
+  Afterward, some array methods may not work
+  anymore.
+* ***To keep it simple, we will only use numbers for
+  array indices.***
+---
+### Array Property: length
+* Array length property: technically, it returns the
+  value of last index + 1.
+* If the array has unfilled positions, the length value
+  doesn't represent the number of initialized values
+  in the array, for example,
+```javascript
+let myArray = [10,20,30];
+myArray[10] = 100;
+```
+* `myArray.length` returns 11. There are 7 empty
+  "undefined" elements from position 3 to 9.
+---
+### Array Operations
+* Delete a value from an array:
+```javascript
+delete myArray[2];
+```
+* The value at index 2 will be removed and the
+  space becomes empty.
+* Assign array element values to variables - other
+  than the index method, you can also do these:
+```javascript
+//assign 1st 3 values to a, b, c
+let [a, b, c] = arr;
+const [x, y, z] = [10,20,30];// assign
+// 10, 20, 30 to x, y, z respectively
+[x,y] = [y,x]; //swap x, y values
+```
+---
+### Array Methods
+* `concat`: merges elements in multiple arrays and
+  returns the merged result; the calling array
+  object content is not changed.
+* `toString`: returns the string of all items in the
+  array separated by comma ,.
+* `indexOf`: returns the index of first matching item
+  in the array. If no match, returns -1.
+* `lastIndexOf`: returns the index of last matching
+  item in the array.
+---
+### Array Methods
+* `push`: adds a new value to the end of the array
+* `pop`: removes the last item from an array
+* `shift`: removes the first item in the array
+* `unshift`: inserts a new item to the beginning of
+  the array
+* Ref.
+  * https://javascript.info/array
+  * https://www.w3schools.com/js/js_array_methods.asp
+---
+### Array Methods
+```javascript
+let arr = [10];  //create an array with value 10;
+arr.push(20);    //arr has [10,20]
+arr.push(30);    //arr has [10,20,30]
+arr.pop();       //returns 30, arr has [10,20]
+arr.shift();     //returns 10, arr has [20]
+arr.unshift(40); //arr has [40,20]
+
+let arr1 = [50];
+let arr2 = arr.concat(arr1);
+//what are in arr, arr1, and arr2?
+```
+---
+### Array Methods
+* `join()`: turns the array into a string with all
+  array elements separated by commas like
+  `toString()` method, but you can provide a
+  separator string to `join()`.
+```javascript
+let arr = ['John', 'Bob', 'Mar'];
+let str = arr.join();  // str has “John,Bob,Mary”
+str = arr.join('; '); // str has “John; Bob; Mary”
+```
+---
+### Array Methods
+* `slice(index1, index2)`: returns a subarray
+  including the element at indext1 to element right
+  before index2.
+* The original array is not affected.
+```javascript
+let arr = [10, 20, 30, 40];
+const arr2 = arr.slice(1,3);
+//arr2 has 20, 30, arr umchanged
+```
+---
+### Array Methods
+* You can also give slice negative numbers as
+  arguments, which will be treated as offset from
+  the end of the array.
+  `-index+array.length` is used
+  to replace the `-index`.
+```javascript
+let arr = [10, 20, 30, 40];
+const arr2 = arr.slice(-2,3);
+// is equivalent to:
+const arr2 = arr.slice((-2+4),3);
+// arr2 has 30, arr is unchanged
+```
+---
+### Array Methods
+* Replace, insert, and remove values:
+```text
+splice(startIndex, deleteCount, newItemsToAdd);
+```
+* Example:
+```javascript
+let arr = [10, 15, 30, 40];
+arr.splice(1,1,20); //returns 15; arr:[10,20,30,40]
+arr.splice(2,0,50); //arr: [10,20,50,30,40]
+arr.splice(1,1);    //returns 20, arr:[10,50,30,40]
+arr.splice(2);      //returns [30,40]; arr:[10,50]
+```
+---
+### Sorting Arrays
+* `sort()`: sorts array elements alphabetically.
+* `reverse()`: reverse elements sequence in the
+  array
+* these methods operate "in-place"
+* How do you reverse sort an array?
+---
+### Sorting Arrays
+* The built-in sort method sorts the items in the array
+  into alphabetical order - treating all elements as
+  strings
+* This is fine with string arrays but not for numerical
+  arrays:
+```javascript
+let arr = [1, 3, 40, 5, 25, 15, 7];
+arr.sort();
+// arr now has [1, 15, 25, 3, 40, 5, 7]
+```
+---
+### Sorting Arrays
+* To sort a numerical array properly, we need to
+  define a function and pass it into the sort method:
+```javascript
+function numOrder(a, b){
+    return a - b;
+}
+arr.sort(numOrder);
+// arr now has [1, 3, 5, 7, 15, 25, 40]
+```
+* To reverse the sorting order, just reverse the
+  sequence of the parameter order in the
+  function's return statement.
+---
+### Sorting Arrays
+* How does `arr.sort(numOrder)` work?
+* Sorting is a process of repetitively comparing 2
+  values in the array to determine their order.
+* When comparing the values, JS will pass them
+  to function `numOrder()`.
+* Use ascending order sort as an example: if
+  `numOrder` returns a value &lt; 0, a will be
+  placed in front of b in the array; if it returns a
+  value &gt; 0, a will be placed after b in the array; if
+  it returns 0, there is no difference.
+---
+### Iterating through Arrays
+* Several methods can be used to do it
+* `for ... of` statement:
+```javascript
+const colors = ['Red', 'Green', 'Blue'];
+for (const color of colors) {
+    console.log(`Color is ${color}`)
+};
+```
+---
+### Iterating through Arrays
+* Another method is the `for ... in` statement.
+* The same example can be written using the
+  `for ... in` statement:
+```javascript
+const colors = ['Red', 'Green', 'Blue'];
+for (const i in colors) {
+    console.log(`Color is ${colors[i]}`)
+};
+```
+* `for ... of` and `for ... in` are similar statements but
+  note that i in `for ... in` is the array index.
+---
+### Iterating through Arrays
+* `forEach()` method
+  * it accepts a function name as argument.
+  * The function can have up to 3 arguments - the value at
+    the index, the index, and the array. The last two are
+    optional.
+  * The function parameter is typically called a callback
+    function.
+* https://www.w3schools.com/jsref/jsref_foreach.asp
+---
+### Iterating through Arrays
+```javascript
+const colors = ['Red', 'Green', 'Blue'];
+
+colors.forEach(showColor);
+
+function showColor(color, index) {
+    console.log(`Color at index ${index} is ${color}`)
+};
+```
+---
+### Array Assignment
+* Array is a reference type, i.e., when
+  you create an array, you create a
+  variable whose value is a reference
+  to the data area of the array.
+* When assigning an array to another
+  array variable, only the reference to
+  the data area is assigned.
+---
+### Array Assignment
+```javascript
+let arr1 = [20, 30];
+let arr2 = arr1;
+```
+![array alias](alias.png)
+* If you change arr1 data, arr2 data will
+  be changed as well.
+---
+### Array Applications
+* Present the data of an array on a webpage as a
+  table or list
+* How?
+* Make each element of the array a row in the
+  table or an item in the list 
+* Use `for ... of` or `for ... in` to do it
+---
+### Array map Method – Optional
+* The `map()` method also iterates over an array and
+  takes a function as a parameter that is invoked on
+  each item in the array.
+* It returns a new array that replaces each value with
+  the return value of the callback function:
+
+```javascript
+function square(x) {return x * x;}
+
+const numbers=[1, 2, 3];
+
+console.log(numbers.map(square));
+```
+---
+### Array reduce Method
+* The `reduce()` method iterates over each value in the
+  Array. It cumulatively combines each value and
+  then returns just a single accumulated result.
+* It takes a callback argument that is used to combine
+  each value of the array with the running total.
+* The callback usually takes 2 arguments, the
+  cumulative result and the array element value at
+  each index.
+---
+### Array reduce Method
+```
+function sumFunc(result,nextValue) {
+    return result + nextValue;
+}
+
+const numbers = [1, 2, 3, 4, 5];
+
+let sum = numbers.reduce(sumFunc);
+```
+* In the example, result is the accumulator starting with
+  the value of the first array element, by default.
+* By the end, sum will have the accumulated total of
+  all values in the array, 15.
+* In addition to the callback function, reduce() takes
+  another argument for the initial value of the
+  accumulator
+
+
+
+
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>
