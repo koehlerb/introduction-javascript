@@ -2,10 +2,22 @@
 
 (() => {
   window.addEventListener('load', (event) => {
-    pushB.addEventListener('click', myPush);
-    popB.addEventListener('click', myPop);
-    shiftB.addEventListener('click', myShift);
-    unshiftB.addEventListener('click', myUnshift);
+    pushB.addEventListener('click', () => {
+      myPush();
+      updateUI();
+    });
+    popB.addEventListener('click', () => {
+      myPop();
+      updateUI();
+    });
+    shiftB.addEventListener('click', () => {
+      myShift();
+      updateUI();
+    });
+    unshiftB.addEventListener('click', () => {
+      myUnshift();
+      updateUI();
+    });
     const updateUI = () => {
       while (list.firstChild) {
         list.removeChild(list.firstChild);
