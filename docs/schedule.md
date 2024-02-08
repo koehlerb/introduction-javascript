@@ -83,7 +83,7 @@ This schedule is tentative and subject to change.
       <td>Feb 6</td>
       <td>Feb 8</td>
       <td>Feb 8</td>
-      <td>Decisions and Loops</td>
+      <td><a href="pathname:///slides/decisions-loops">Decisions and Loops</a></td>
       <td>
         <a href="/docs/conditional-statements">Conditional Statements</a><br />
         <a href="/docs/loops">Loops</a>

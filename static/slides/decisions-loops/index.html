@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Decisions and Loops</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Decsions and Loops
+---
+### Objectives - use:
+* if ... else statements
+* switch statements
+* for loops
+* while loops, and
+* do ... while loops
+* loops with arrays
+---
+## Selection
+---
+### if Statement 
+```javascript
+if (condition) {
+  // statements if condition is true
+} else {
+  // statements if condition is false
+}
+```
+---
+### if Statement
+* a condition typically involves a comparison:
+```javascript
+const age = prompt('enter you age');
+// differnt path depending on age
+if (age < 12) {
+    console.log('Child rate applies.');
+} else {
+    console.log('Regular rate applies.');
+}
+```
+---
+### Comparison Operators
+```javascript
+let x = 10;
+```
+<table>
+  <thead>
+    <th>Operator</th>
+    <th>Description</th>
+    <th>Example</th>
+    <th>Result</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">==</td>
+      <td rowspan="2">equality</td>
+      <td>x == 10</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>x == "10"</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td rowspan="2">===</td>
+      <td rowspan="2">strict equality (value and type)</td>
+      <td>x === 10</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>x === "10"</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+---
+### Comparison Operators
+```javascript
+let x = 10;
+```
+<table>
+  <thead>
+    <th>Operator</th>
+    <th>Description</th>
+    <th>Example</th>
+    <th>Result</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">!=</td>
+      <td rowspan="2">inequality</td>
+      <td>x != 10</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>x != "10"</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td rowspan="2">!==</td>
+      <td rowspan="2">strict inequality (value and type)</td>
+      <td>x !== 10</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>x !== "10"</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</table>
+---
+### Comparison Operators
+```javascript
+let x = 10;
+```
+<table>
+  <thead>
+    <th>Operator</th>
+    <th>Description</th>
+    <th>Example</th>
+    <th>Result</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&gt;</td>
+      <td>greater than</td>
+      <td>x &gt; 10</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>less than</td>
+      <td>x &lt; 10</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>&gt;=</td>
+      <td>greater than or equal to</td>
+      <td>x &gt;= 10</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>&lt;=</td>
+      <td>less than or equal to</td>
+      <td>x &lt;= 10</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</table>
+---
+### Strict Comparisions === and !=== 
+* compare value and type
+```javascript
+'123' === 123 // false
+'123' == 123  // true
+``` 
+---
+### Ternary Operator
+* shorthand of if ... else statement
+* takes 3 operands:
+```javascript
+condtion ?
+// result if true
+: 
+// result if false
+```
+* Example:
+```javascript 
+const n = prompt('enter a number');
+const message = n % 2 === 0 ? 'n is even' : 'n is odd';
+alert( message );
+```
+---
+### Logical Operators
+* a logical operator is used to combine multiple conditions
+* can be used with any primitive values or objects
+* the result is true or false
+* ! (logical NOT)
+* && (logical AND)
+* || (logical OR)
+---
+### Logical Operators
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A || B</th>
+      <th>A && B</th>
+      <th>! A</th>  
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>true</td>
+      <td>true</td>
+      <td>true</td>
+      <td>true</td>
+      <td>false</td>  
+    </tr>
+    <tr>
+      <td>true</td>
+      <td>false</td>
+      <td>true</td>
+      <td>false</td>
+      <td>false</td>  
+    </tr>
+    <tr>
+      <td>false</td>
+      <td>true</td>
+      <td>true</td>
+      <td>false</td>
+      <td>true</td>  
+    </tr>
+    <tr>
+      <td>false</td>
+      <td>false</td>
+      <td>false</td>
+      <td>false</td>
+      <td>true</td>  
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>  
+    </tr>
+  </tbody>
+</table>
+---
+### Logical Operators
+```javascript
+if (score >= 90 && score <= 100) {
+  document.write('Grade A+!');
+}
+//
+if (age >= 65 || age <= 12) {
+  document.write('Discount rate applies!');
+}
+//
+if (!(age >= 65 || age <= 12)) {
+  document.write('regular rate applies!');
+}
+// The same can be coded as:
+if (age < 65 && age > 12)) {
+  document.write('regular rate applies!');
+}
+```
+---
+### switch statement 
+* used to simplify certain if statements
+```javascript
+switch (variable) {
+    case value1:
+      // statements
+      break;
+    case value2:
+      // statements
+      break;
+    //more cases
+    //default is optional but highly recommended
+    default:
+      // statements
+      break;
+}
+```
+---
+### switch statement 
+```javascript
+const dice = Math.floor(Math.random() * 6))+1;
+switch (dice) {
+    case 4:
+      alert('You rolled a four');
+      break;
+    case 5:
+      alert('You rolled a five');
+      break;
+    case 6:
+      alert('You rolled a six');
+      break;
+    default:
+      alert('You rolled a number less than four');
+      break;
+}
+```
+---
+### switch statement 
+* switch only checks exact match cases using
+  strict comparison.
+* break must be in place after each case code
+  block. Otherwise, after the first matching
+  case, all remaining case blocks will be
+  executed.
+* If multiple cases share the same code block,
+  they can be grouped together, as shown in
+  the next example.
+---
+### switch statement
+```javascript
+let input = prompt('Enter a 3-letter weekday name:');
+switch (input.toLowerCase()) {
+    case "mon": case "tue": case "wed": case
+         "thu": case "fri":
+      alert("It's a weekday, need to go to work or school");
+      break;
+    case "sat": case "sun":
+      alert("It's a weekend day. You may stay home.");
+      break;
+    default:
+      alert("input is invalid.");
+}
+```
+---
+## Loops
+---
+### while Loops
+* syntax:
+```javascript
+while (condition) {
+    // JS statements
+}
+```
+* example:
+```javascript
+let i=0;
+while (i &lt; 3) {
+    document.write(i);
+    i++;
+}
+```
+---
+### while Loops
+![while loop flow chart](while.png)
+---
+### Infinite Loops - Try to Avoid
+* Make sure that the loop condition will change to false
+  at some point so that the loop will terminate
+```javascript
+let i=0;
+// infinite loop
+while (i>=0){
+    document.write(i);
+    i++;
+}
+```
+---
+### do while Loops
+* syntax:
+```javascript
+do {
+    // JS statements
+} while (condition);
+```
+* example:
+```javascript
+let i=0;
+do {
+    document.write(i);
+    i++;
+} while (i &lt; 3);
+```
+* do while loops execute the body at least once
+---
+### do while Loops
+![do while loop flow chart](do-while.png)
+---
+### for Loops
+* syntax:
+```javascript
+for (initializaiont; condition; after) {
+    // JS statements
+} while (condition);
+```
+* example:
+```javascript
+for (let i=0; i&lt;3; i++) {
+    document.write(i);
+}
+```
+---
+### for Loops
+![for loop flow chart](for.png)
+---
+### for vs. while loop
+* they are the same; just different syntax
+```javascript
+for (let i =0; i&lt;3; i++) {
+    document.write(i);
+}
+// same as above as a while loop
+let i =0;
+while (i &lt; 3) {
+    document.write(i);
+    i++;
+}
+```
+---
+### Leaving a Loop with break
+* break statement stops the loop and jumps to the
+  line immediately after the loop.
+```javascript
+var count = 10;
+var sum = 0;
+while (count &gt; 0) {
+    sum = sum + count;
+    if (sum &gt; 40) {break;}
+    count--;
+}
+alert(sum);
+```
+---
+### Skipping One Iteration
+* break stops the loop and jumps to the line right
+  after the loop. How about skipping one iteration?
+  Use continue statement.
+```javascript
+let max = 10;
+let sum = 0;
+for (let i = 1; i &lt;= max; i++) {
+    if (i == 5) {continue;}
+    sum = sum + i;
+}
+alert(`The total of integers from 1 to ${max} excluding 5 is ${sum}`);
+```
+---
+### Nested for Loop
+```javascript
+// syntax
+for(init1; condition1; after1) {
+    for(init2; condition2; after2){
+      //inner for loop body
+    }
+}
+// example
+for (let i = 0; i &lt; 10; i++) {
+    for (let j = 0; j &lt; 10; j++) {
+      document.write(i*j + ' ');
+    }
+}
+```
+---
+## Looping over Arrays
+---
+### Looping over Arrays
+* The idea is to use a loop counter as the array
+  index.
+```javascript
+let arr1 = [10,20,30,40,50];
+for(let i = 0; i < arr1.length; i++){
+    document.write(arr1[i]+' ');
+}
+```
+---
+### for-of Loop - Over an Array
+* New to ES 6 to simplify Array element access
+```javascript
+let arr = [10,20,30,40,50];
+for(const value of arr) {
+    document.write(value + ' ');
+}
+```
+---
+### for-in Loop - over an Array
+* The for ... in loop is intended for stepping through
+  the properties of an object. It applies to arrays as
+  well.
+* When it applies to an array, the var is the index
+  value of each array element
+```javascript
+for ( somevar in object) {
+    //do something with somevar
+}
+```
+---
+for-in Loop - over an Array
+```javascript
+let days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+let message = '';
+for (let i in days) {
+    message += 'Day ' + i + ' is ' + days[i] + '\n';
+}
+alert(message);
+```
+---
+### Summary
+* if ... else statements
+* switch statements
+* for loops
+* while ... do loops, and
+* do ... while loops
+* Looping over an array
+
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>
