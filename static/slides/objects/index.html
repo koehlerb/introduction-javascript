@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Object-oriented Programming</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Object-oriented Programming
+---
+### Objectives
+* create an object using literal as well as class notations
+* instantiate an object
+* access, add and delete object properties and methods
+* use array of objects
+* use class to create objects
+* use getters and setters for an object
+---
+### Object Concepts
+* *procedural* programming: instructions can
+  create, destroy, or modify the data, yet the
+  data always remains somehow "separate"
+  from the program code.
+* *object-oriented* programming: instructions
+  and the data are more intertwined.
+---
+### Object Concepts
+* *Code reuse*: other programs/programmers can
+  easily use your object definitions.
+* *Encapsulation*: the bundling of data with the
+  methods that operate on that data;
+  the internal workings of the object can be hidden;
+  external code accesses the object's data only
+  through the interfaces that the object offers.
+* *Inheritance*: create new objects based on
+  previously defined objects, the new
+  object inherits properties and methods from the
+  old.
+---
+### Object Concepts
+* An object in JavaScript is a self-contained
+  set of related variables and functions.
+* Variables are called properties and functions
+  are called methods.
+* Each property is a key-value pair.
+* Properties are separated by commas.
+* Property values can be strings, numbers,
+  booleans, arrays, or another object.
+---
+### Methods for Object Creation
+1. Object Literal: `const person = {...}`;
+1. Use a class - new to ES6
+1. Use new Object()
+  `const person = new Object();`
+1. Use a constructor function
+
+The last two methods are covered in the
+optional section.
+---
+## Creating Objects Using Literal Notation 
+---
+### Object Literals
+* An object literal is an object that is created
+  directly by wrapping all its properties and
+  methods in curly braces `{}`.
+* Object literals allow objects to be created
+  quickly without the need for defining a
+  constructor or class.
+---
+### Example
+```javascript
+let person = {
+  name: 'Bob Smith',
+  greeting() {
+    alert(`Hi, my name is: ${this.name}`);
+  }
+};
+```
+`name` is a property, and `greeting` is a
+method.
+---
+### Accessing Object Properties/Methods
+```javascript
+// using the dot notation
+
+// use the object's property
+alert(person.name);
+
+// update the object's property
+person.name = 'Jack Smith';
+
+// call the object's method
+person.greeting();
+```
+---
+### Example
+The example can also be done with this code:
+```javascript
+let person = {
+  name: 'Bob Smith',
+  greeting: function () {
+    alert(`Hi, my name is: ${this.name}`);
+  }
+};
+```
+---
+### Object Methods
+* The examples showed two ways to define a
+  method in an object.
+  1. `funName(){...}`
+  1. `funName: function(){...}`
+* Syntax 2 is like any other property
+  definition. Therefore, a method is also
+  considered a property of the object.
+* NOTE - ES6 only considers 1 as a method
+  technically. Their subtle differences are
+  beyond this course.
+---
+### Example
+```javascript
+let emp = {
+  name: 'Bob',
+  hours: 20,
+  payRate: 20,
+  pay(){return this.hours * this.payRate;}
+};
+
+let htmlStr = `<p>
+  empName: ${emp.name}<br>
+  Hours worked: ${emp.hours}<br>
+  pay rate: ${emp.payRate}<br>
+  Pay amount: ${emp.pay()}</p>`;
+document.getElementById("section1").innerHTML = htmlStr;
+```
+---
+## Createing Objects Using a Class 
+---
+### Class Concepts
+* Class is commonly used in many Object-Oriented 
+  Programming languages for
+  creating objects.
+* Class is a new feature to ES6.
+* Class serves as a blueprint for all objects that
+  share the same properties and functions
+  (methods).
+---
+### Using Built-in Classes 
+* can use the `new` opeartor to create
+  new objects of a particular class
+* e.g. `Date` class
+* [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+---
+### Examples 
+```javascript
+const rightNow = new Date();
+const d1 = new Date('1995-12-17T03:24:00');
+const d2 = new Date(2000, 11, 17); // the month is 0-indexed
+const d3 = new Date(2020, 11, 17, 3, 24, 0);
+
+const nowHour = rightNow.getHour();
+d2.setMonth( 6 );
+
+console.log( d3.toString());
+```
+---
+### Creating Your Own Classes
+```javascript
+class Person {
+  constructor(name = 'John Doe') {
+    this.name = name; 
+  }
+
+  greeting() {
+    alert(`Hello, I am ${this.name}.`);
+  }
+}
+```
+
+* Usually, a constructor has parameters to receive input values, 
+  though it's optional. A parameter can have a default value, 
+  as shown in the example above.
+---
+### JavaScript Class
+* Class definition starts with
+  `class <ClassName> {`
+  and the class name starts with an upper-case
+  letter.
+* A class can have 1 and only 1 method named
+  `constructor`. It's used to define and initialize
+  object variables (properties).
+```javascript
+constructor(personName = 'John Doe') {
+    this.name = personName;
+}
+```
+* To access an object's property in class, use `this`
+  to prefix the property name.
+---
+### JavaScript Class
+* In addition to the constructor, a class can have
+  other methods.
+* Object properties are best defined in
+  constructor, though other methods may use
+  these properties such as:
+```javascript
+greeting() {
+    alert(`Hello, I am ${this.name}.`);
+}
+```
+---
+### JavaScript Class
+* Class is a blueprint for similar objects. How
+  to create such an object of the class?
+```javascript
+let objName = new ClassName(parameters);
+```
+* The above statement does the following:
+  1. Create an object of the class - call the class
+      constructor method and pass in the
+      parameter values.
+  1. Assign the newly created object reference to
+    objName variable.
+---
+### Example
+```javascript
+//create objects
+let person1 = new Person('Bob Smith');
+let person2 = new Person('Mary Jones');
+
+// show object info
+console.log(person1.greeting());
+```
+---
+## Additional Features of Objects 
+---
+### Object are Reference Types
+* Objects, arrays, and functions are reference
+  types.
+* When a reference type is assigned to a
+  variable, the object's reference (address), but
+  not the content, is assigned to the variable.
+* When the object content is changed, all
+  variables that reference the object will be
+  affected.
+---
+### Example
+```javascript
+const person1 = {
+  name: 'John',
+  // more properties here
+};
+
+const person2 = person1;
+person2.name = 'Bob';
+//person1's name is also changed
+```
+![reference](reference.png)
+---
+### Adding Properties / Methods
+* JavaScript is a dynamic language, i.e., new
+  properties and methods can be added to an
+  object at any time in a program, after the
+  object is created.
+* It is done by simply assigning a value or an
+  anonymous function to the new property.
+---
+### Example
+```javascript
+let person1 = new Person('Bob Smith');
+
+person1.age = 20;
+person1.city = 'Courtenay';
+
+person1.toString = function(){
+  return `${this.name} ${this.age} ${this.city}`;
+}
+```
+---
+### Remove a Property / Method
+* A property or method can be removed from
+  an object using the delete operator:
+```javascript
+// remove from one object
+delete person1.city
+```
+* NOTE - the property to be deleted here must
+be in the original constructor function or
+added to the object itself but not to its
+prototype, which is covered as an optional
+topic later in this document.
+---
+### Private Properties
+* Object properties are accessible by all
+  programs by default, which makes it error 
+  prone.
+* ECMA262-2022 introduced private data
+  fields and methods, which enhances
+  protection of class internal data.
+* A private data filed can only be accessed by
+  methods in the class.
+* You declare a private data field starting with
+  `#`, such as `#name`; - no space after `#`.
+---
+### Getters and Setters
+* To expose a data property, a common
+  practice is using getter and setter methods.
+* When a program reads an object property,
+  the respective getter method will be called
+  automatically.
+* When a program changes an object
+  property, the respective setter method will
+  be called automatically.
+---
+### Getters and Setters
+* Getter
+```javascript
+get propertyName() {...}
+```
+* Example
+```javascript
+get name() {return this.#name;}
+```
+---
+### Getters and Setters
+* Setter
+```javascript
+set propertyName() {...}
+```
+* Example
+```javascript
+set name(iName) {
+    iName = iName.charAt(0).toUpperCase() +
+      iName.slice(1).toLowerCase();
+    this.#name = iName;
+}
+```
+---
+### Getters and Setters
+* The general concept is we use getter / setter
+  methods to establish the class interface to
+  outside of class programs.
+* The data is stored in a private data field.
+* Since getters and setters are methods, you
+  may add program logic to format the data
+  output for getters and to verify the input
+  data for setters.
+---
+```javascript
+class Person {
+  #name; // declaration is required
+
+  constructor(iname = 'unknown') {
+    this.name = iname;
+  }
+
+  greeting() {
+    alert(`Hello, I am ${this.name}. `);
+  }
+
+  get name() {return this.#name;}
+
+  set name(iName){
+    iName = iName.charAt(0).toUpperCase() +
+    iName.slice(1).toLowerCase();
+    this.#name = iName;
+  }
+}
+```
+---
+### Getters and Setters - Example
+* Add these 2 lines of JS code outside of the
+  `Person` class, then link the code to a
+  webpage.
+```javascript
+let aPerson = new Person('John');
+alert (`Hi, ${aPerson.name}!`);
+// 
+aPerson.name = 'Bob';
+alert (`Hi, ${aPerson.name}!`);
+```
+---
+### Getters and Setters—Example
+* You may add a break point to the JS code and
+  step through the execution process to see
+  how the getter and setter are called.
+* What happens if you add this JS code after
+  the other JS code?
+```javascript
+aPerson.#name = 'Bob';
+alert (`Hi, ${aPerson.name}!`);
+```
+* Would you be able to run the code? What do
+  you get from your observation.
+---
+## Programming an Array of Objects
+---
+### Array of Objects
+* When working with real-life problems, we
+  often deal with large number of objects.
+* We can create an array of objects, then take
+  advantage of array operations.
+---
+### Example
+```javascript
+// create an object with the constructor
+let aPerson = new person('Bob Smith');
+
+// use the object to initialize an array
+let group = [aPerson];
+
+// create and add more objects to the array
+aPerson = new person('Mary Jones');
+group.push(aPerson);
+
+aPerson = new person('John Doe');
+group.push(aPerson);
+```
+---
+### Example
+```javascript
+// use a loop to show the array content
+for (let i = 0; i < group.length; i++)
+{
+  group[i].greeting();
+}
+```
+* Can you do it with a more concise syntax?
+  Review the array iteration methods covered
+  in the earlier module.
+---
+## Checking Availability of a Property/Method 
+---
+### Does a Property / Method Exist?
+* Use the `in` operator:
+```javascript
+'city' in person1;
+```
+* Check if the property is undefined:
+```javascript
+person1.city !== undefined;
+```
+* Use Optional Chaining `?.`
+  `?.` stops the evaluation if the value
+  before ?. is undefined or null and
+  returns undefined.
+* https://javascript.info/optional-chaining
+---
+### Find Out all Properties
+* Loop through an object's properties and
+  methods:
+```javascript
+for(const key in person1) {
+    console.log(key + ": " + person1[key]);
+};
+```
+---
+### Find Out Own Properties
+* The following code will also just show the
+  person1's own properties:
+```javascript
+for(const key of Object.keys(person1)){
+    console.log(key);
+}
+```
+* ES2017 added a method to do the same for
+  property values:
+```javascript
+for(const value of Object.values(person1)) {
+    console.log(value);
+}
+```
+---
+### Summary
+* Objects—what, why, and how
+* Create an object using literal and class
+  notations.
+* Access object properties and methods.
+* Using array of objects.
+* Getters and Setters.
+---
+### References
+* https://introduction-javascript.pages.dev/docs/objects
+* https://javascript.info/object-basics
+* https://javascript.info/class
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+* https://www.w3schools.com/js/js_objects.asp
+* https://www.w3schools.com/js/js_classes.asp
+
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

@@ -116,7 +116,7 @@ This schedule is tentative and subject to change.
       <td>Feb 27</td>
       <td>Feb 29</td>
       <td>Feb 29</td>
-      <td>Object-Oriented Programming</td>
+      <td><a href="pathname:///slides/objects">Object-Oriented Programming</a></td>
       <td>
         <a href="/docs/objects">Objects</a>
       </td>
