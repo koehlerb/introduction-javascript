@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+        Generate a menu with JS Code. The text content is produced by ChatGPT 3.5
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="examples.css" />
+    <title>Scripting the DOM</title>
+    <style>
+      input {
+        font-size: 2em;
+      }
+
+      ul {
+        list-style: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>DOM Operations</h1>
+      <p>DGL 113</p>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a href="DOMops.html">DOM Qry & Ops</a>
+        </li>
+        <li>
+          <a href="attributes.html">Attributes</a>
+        </li>
+        <li>
+          <a href="dynamicmenu.html" target="new">Dynamic Menu</a>
+        </li>
+      </ul>
+    </nav>
+    <button onclick="createMenu()">Add Menu</button>
+    <main>
+      <h2>LLM Training Workflow</h2>
+
+      <p>
+        The typical training workflow for a large language model (LLM) like
+        GPT-3.5 involves several stages. While the specific details may vary
+        depending on the implementation and tools used, here is a general
+        overview of the process:
+      </p>
+
+      <h3>Data Collection</h3>
+      <p>
+        The initial step involves gathering a large dataset of text from various
+        sources. This dataset serves as the training corpus for the language
+        model. The data can be sourced from books, articles, websites, or any
+        other text available.
+      </p>
+
+      <h3>Preprocessing and Tokenization</h3>
+      <p>
+        The collected text data is preprocessed to remove any unwanted
+        characters or formatting. It is then divided into smaller units called
+        tokens, which can be words, subwords, or characters. Tokenization helps
+        in representing the text in a format suitable for training the model.
+      </p>
+      <h3>Training Setup</h3>
+      <p>
+        The training setup involves configuring the hardware and software
+        environment required for training the language model. This typically
+        includes powerful GPUs or TPUs (Tensor Processing Units) to accelerate
+        the training process.
+      </p>
+
+      <h3>Model Architecture</h3>
+      <p>
+        The architecture of the language model is defined, specifying the number
+        of layers, hidden units, attention mechanisms, and other design choices.
+        LLMs like GPT-3.5 usually adopt a transformer-based architecture that
+        utilizes self-attention mechanisms.
+      </p>
+
+      <h3>Model Initialization</h3>
+      <p>
+        The model parameters are initialized randomly or with pre-trained
+        weights if transfer learning is employed. Pre-training with a
+        large-scale language model like GPT-3 is common, as it provides a strong
+        initialization for fine-tuning on specific tasks.
+      </p>
+      <h3>Training Process</h3>
+      <p>
+        The training process involves feeding the preprocessed text data into
+        the model and optimizing its parameters to minimize a defined loss
+        function. This optimization is typically performed using techniques like
+        stochastic gradient descent (SGD) or its variants. The training process
+        is computationally intensive and can take days or even weeks to
+        complete.
+      </p>
+
+      <h3>Validation and Evaluation</h3>
+      <p>
+        During training, a separate validation set is used to evaluate the
+        performance of the model on a held-out dataset. Various metrics such as
+        perplexity, accuracy, or other task-specific metrics are computed to
+        assess the model's performance.
+      </p>
+
+      <h3>Hyperparameter Tuning</h3>
+      <p>
+        Hyperparameters like learning rate, batch size, and regularization
+        techniques are fine-tuned to improve the model's performance. This
+        tuning is often done through trial and error or more sophisticated
+        techniques like grid search or Bayesian optimization.
+      </p>
+
+      <h3>Iterative Training</h3>
+      <p>
+        The training process is often performed iteratively, where the model is
+        trained for multiple epochs, with each epoch representing a complete
+        pass through the entire dataset. Multiple iterations help the model
+        learn and refine its representations over time.
+      </p>
+
+      <h3>Deployment and Fine-tuning</h3>
+      <p>
+        Once the base language model is trained, it can be fine-tuned on
+        specific downstream tasks or deployed as a general-purpose language
+        model. Fine-tuning involves training the model on a task-specific
+        dataset to adapt it to perform well on a particular application.
+      </p>
+
+      <p>
+        It's important to note that the specific details of the training
+        workflow can vary depending on the specific LLM being used and the
+        organization or research team conducting the training. The above steps
+        provide a general framework for training large language models like
+        GPT-3.5.
+      </p>
+    </main>
+    <footer id="footer">
+      <p>&copy; DGL113 Introduction to JavaScript</p>
+    </footer>
+    <script src="dynMenu.js"></script>
+  </body>
+</html>

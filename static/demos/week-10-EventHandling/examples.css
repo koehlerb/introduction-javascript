@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+body {
+  width: 90%;
+  margin: auto;
+  border: 1px solid;
+}
+
+header img {
+  width: 100%;
+  height: 10em;
+}
+
+body header {
+  padding: 0;
+}
+
+nav ul {
+  display: flex;
+  border-bottom: 1px solid;
+}
+
+nav li {
+  flex: 1 1 45%;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+footer {
+  text-align: center;
+  margin: 0;
+}
+
+main {
+  min-height: 300px;
+  display: flexbox;
+  flex-direction: row;
+  padding: 0.5em;
+}
+
+main button {
+  width: 10em;
+  margin: 0.3em;
+}
+
+main ul {
+  width: 60%;
+  min-width: 20em;
+  margin: auto;
+  text-align: left;
+}
+
+#section1,
+#section2 {
+  box-sizing: border-box;
+
+  min-height: 200px;
+  min-width: 300px;
+  width: 50%;
+  float: left;
+  border: none;
+  padding: 0.5em;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+footer {
+  clear: both;
+  border-top: 1px solid;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+}
+
+.setBackColor {
+  background-color: rgb(153, 213, 135);
+  color: black;
+}
+
+.setFont {
+  font-family: fantasy !important;
+}

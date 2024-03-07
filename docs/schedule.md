@@ -130,7 +130,7 @@ This schedule is tentative and subject to change.
       <td>Mar 5</td>
       <td>Mar 7</td>
       <td>Mar 7</td>
-      <td>Scripting with DOM</td>
+      <td><a href="pathname:///slides/DOM">Scripting with DOM</a></td>
       <td>
         <a href="/docs/DOM-scripting">Scripting with DOM</a>
       </td>

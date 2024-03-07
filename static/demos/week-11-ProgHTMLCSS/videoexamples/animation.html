@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This page is used to illustrate simple animations with JS and CSS
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="examples.css" />
+    <title>Animation Examples</title>
+  </head>
+  <body>
+   
+      <header>
+        <h1>Programming HTML & CSS</h1>
+        <p>DGL 113</p>
+      </header>
+    <nav>
+      <ul>
+        <li>
+          <a href="avcontrol.html">A/V Control</a>
+        </li>
+        <li>
+          <a href="cssselection.html">CSS Selection</a>
+        </li>
+        <li>
+          <a href="animation.html">Animation</a>
+        </li>
+      </ul>
+    </nav>
+  
+     <main id="main">
+      <h2>Basic Animation Examples</h2>
+      <h4>Click on an item in the left column to see an animation.</h4>
+      <section id="section1">
+        <h3>Things To Do</h3>
+        <p>The list has <span>3</span> items.</p>
+        <ol id="toDoList">
+          <li>Mow the lawn</li>
+          <li>Clean the windows</li>
+          <li>Answer your email</li>
+        </ol>
+       </section>
+      <section id="section2">
+        <h3>Practice with this list</h3>
+        <ol id="toDoList">
+          <li>Mow the lawn</li>
+          <li>Clean the windows</li>
+          <li>Answer your email</li>
+        </ol>
+       </section>
+       </main>
+       <footer id="footer">&copy; DGL113 Introduction to JavaScript</footer>
+    <script>
+      let sect1 = document.querySelector("main section");
+      sect1.addEventListener("click", animate);
+      function animate(e) {
+       e.target.classList.add("animate");
+
+        setTimeout(() => {
+         e.target.classList.remove("animate");
+        }, 4000);
+      }
+    </script>
+  </body>
+</html>

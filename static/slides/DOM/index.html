@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Scripting with DOM</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Scripting with DOM
+---
+### Objectives
+* Explain the DOM tree structure of a web page
+* Describe the DOM tree node and related concepts
+* Select element(s) using DOM query methods
+* Retrieve and update DOM element info
+* Add, change, and remove an element
+* Add, change, and remove an element's attributes
+---
+### Introduction 
+* The topics of this lesson are fundamental for
+  understanding JavaScript and webpage
+  interactions.
+* The main topic of the lesson is Document
+  Object Model (DOM) and its manipulation with
+  JS
+* The general approach is:
+  * Select the element and retrieve info
+  * Do something to the selected element - 
+    add/update/delete
+---
+### DOM and JavaScript
+* DOM and JavaScript are separate things that
+  are moderated by different standardization
+  bodies.
+* They don't belong to each other, but they are
+  closely related.
+* Browsers create a model of an HTML page
+  based on DOM.
+* JavaScript accesses / updates HTML pages
+  using DOM.
+---
+### DOM Tree
+* DOM represents an HTML document as a
+  network of connected nodes that form a tree-
+  like structure.
+* The document tree starts with a document
+  node, which has a single child, html node.
+* Everything on a web page is treated as a
+  node - elements, text, or attributes.
+---
+### BOM, DOM, and JavaScript
+![BOM, DOM, and JavaScript](BOM-DOM.png)
+
+https://javascript.info/browser-environment
+---
+### DOM Tree Example
+![DOM tree example](DOM-tree.png)
+---
+### DOM Node Types
+* Each item in DOM tree is called a NODE.
+* A document may contain many types of nodes,
+  but we typically deal with 4 types:
+  1. *document node* - one per html page(nodeType 9)
+  1. *element node* (nodeType 1)—most common.
+  1. An element node may also have a *text node*
+     (nodeType 3)
+  1. An element node may also have *attribute nodes* (nodeType 2)
+* An element could also have other element nodes as
+  children.
+
+https://www.w3schools.com/jsref/prop_node_nodetype.asp
+---
+### DOM Tree Example 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <h1>My To Do List</h1>
+    <ol id="toDoList">
+      <li>Go to class in the morning</li>
+      <li>Go to work in the afternoon</li>
+      <li>Complete the homework</li>
+    </ol>
+    <p id="toDoNotes">Make sure all these are 
+        completed by 8pm so I can
+        play the online game!</p>
+  </body>
+</html>
+```
+---
+### DOM Tree Example 
+![DOM tree example](DOM-tree2.png)
+---
+### DOM Tree Example
+* This page has a good discussion and illustration
+  of the DOM tree with examples:
+* https://javascript.info/dom-nodes
+---
+### Navigating the DOM Tree 
+* The `Node` object has several properties and
+  methods for navigating around the DOM tree.
+* Once you have a reference to an element, you
+  can walk along the tree to find other nodes.
+---
+### childNodes and Children Properties
+* Each node has a property `childNodes`, which
+  represents the collection of its immediate
+  children, including the whitespace text nodes.
+* You can use it to access information about the
+  children of a DOM node.
+* the `children` property returns all element nodes
+  that are children of the current node, i.e.,
+  whitespace text nodes are excluded.
+* Their difference can be illustrated with an `ol`
+  element.
+---
+### childNodes and children Properties
+* View the [DOMOps.html](/demos/week-09-DOM/DOMops.html) page in a browser
+* Go to the Developer Tools Console tab
+* Run these statements:
+```javascript
+let ol = document.querySelector('ol');
+ol.children;
+```
+* Then enter:
+```javascript
+ol.childNodes;
+```
+* You will see they have different content.
+---
+### Navigating DOM Tree
+* `firstChild` could be an empty text node.
+* `firstElementChild` is the first tagged node.
+* `lastChild` and `lastElementChild` properties:
+  similar to the pair above.
+* Other properties might be useful as well such
+  as `parentNode`, `nextSibling`, and
+  `previousSibling`.
+---
+### DOM Tree Operations
+* A main purpose of client-side JS code is to
+  program and manipulate various nodes in a
+  DOM tree.
+* Basic operations are:
+  * getting the node(s)
+  * changing their contents
+  * adding new nodes, and
+  * removing existing nodes.
+---
+## DOM Queries
+---
+### Getting Elements
+* To access and update the HTML, first you select
+  the element(s).
+* We use ***DOM queries*** to access DOM
+  elements.
+* Some queries return one element, and others
+  return a list of elements.
+---
+### Getting Elements - Legacy Methods
+* Legacy methods can still be used to access
+  certain elements on a page, such as:
+  1. `document.body`
+  1. `document.images`: returns a nodelist
+  1. `document.links`: returns a nodelist of all `<a>`  
+      and `<area>` elements that have an `href`
+      attribute
+  1. document.forms
+* All these except for #1 returns a list of
+  elements.
+---
+### Getting Elements - Legacy Methods
+* A list of elements is also called a nodelist,
+  which is like an array.
+* You can use index notation to access each
+  node.
+```javascript
+const n = document.links.length
+//
+for (let i=0; i < n; i++) {
+    let node = document.links[i];
+    console.log(node.tagName + " " + node.id);
+}
+```
+---
+### DOM Queries
+* Some DOM queries return one node.
+* `getElementById(id)` returns a reference to the
+  element with the id specified, or null.
+```javascript
+const h1 = document.getElementById('title');
+h1.textContent = 'Welcome!';
+```
+* NOTE - id value is case sensitive.
+---
+### DOM Queries
+* Many DOM queries return a nodelist.
+* `getElementsByTagName(tagName)` returns a
+  nodelist of all elements with the tagName;
+  the list is empty if no match is found.
+```javascript
+const list = document.getElementsByTagName('li');
+alert(list[0].innerHTML);
+```
+---
+### DOM Queries
+* `getElementsByClassName(className)` returns
+  a nodelist of all elements that have the class
+  as specified, or an empty list if no match
+  is found
+```javascript
+let items = document.getElementsByClassName('course');
+alert(items[0].innerHTML);
+```
+* NOTE - ClassName is case sensitive.
+---
+### DOM Queries
+* Check if there are elements in the nodelist
+  before using it.
+```javascript
+if (elements.length > 0) {
+    let firstItem = elements[0];
+}
+```
+---
+### DOM Queries
+* For a nodelist, even if there is only one node in it,
+  you still need to use the array notation to access it:
+```javascript
+let ele = document.getElementsByTagName('footer');
+```
+* Even if you are sure there is only one footer on the
+  page, you still need to do the following:
+```javascript
+ele[0].innerHTML += TheHtmlContentToPutIn;
+```
+---
+### DOM Queries 
+* The DOM query methods introduced above are
+  useful tools for selecting DOM objects in a
+  webpage.
+* However, their coverage is limited.
+* How did we identify elements in CSS?
+* Can we use similar methods in JavaScript to select elements?
+---
+### DOM Queries - CSS Selectors
+* Most Commonly Used CSS Selectors
+  * Element: `body, p, div, ul, li, section, title`, etc.
+  * Id: `#toDoList`
+  * Class: `.school`
+  * Contextual: `li.school`  (indicates the `li` that has a class name
+    `"school"`)
+* Review dgl103 for more contextual selector
+  options.
+---
+### DOM Queries - CSS Selectors
+* `querySelector('CSS selector')` returns the first
+  element in the container that matches the CSS selector,
+  or null if nothing is found.
+* The container is the node that calls the method. It's
+  usually the document but could be another node as well.
+* `querySelector('#toDoList');`
+  * similar to getElementById ()
+* `querySelector('li.school');`
+  * If multiple matches exist, only the first one is returned.
+---
+### DOM Queries - CSS Selectors
+* `querySelectorAll('selector')` returns all
+  elements in the container that match the CSS selector, or an
+  empty nodelist if nothing is found.
+  * `document.querySelectorAll('li');`
+  * `document.querySelectorAll('.school');`
+* This method is similar to `getElementsByTagName()`
+  and `getElementsByClassName()`
+---
+## Working with Elements
+---
+### Finding Node Content
+* An element can contain:
+  * Text
+  * Child elements
+  * Attributes
+---
+### Finding Node Content
+* To access a node's content, you can use:
+  * `nodeValue` on textnode (note - each block of text is a textNode)
+  * `textContent` to return text content of
+    the node and its child nodes.
+  * `innerHTML` to return the node's content
+    including the markup.
+  * Is there an `innerText`? It
+    doesn't have a consistent definition across
+    browsers.
+---
+### Finding Node Content - Examples
+HTML
+```html
+<ol id='toDoList'>
+  <li class='school'>Homework</li>...
+</ol>
+```
+JS
+```javascript
+let toDoList = document.querySelector('ol#toDoList');
+let li = toDoList.firstElementChild;
+let textNode = li.firstChild;
+console.log(textNode.nodeValue);
+```
+---
+### Finding Node Content - Examples
+HTML
+```html
+  <li class='school'><em>Homework</em></li>...
+```
+JS
+```javascript
+let toDoList = document.querySelector('ol#toDoList');
+let li = toDoList.firstElementChild;
+//
+console.log(li.textContent); // Homework
+console.log(li.innerHTML); // <em>Homework<em>
+```
+---
+### Viewing DOM in a Browser
+* Modern browsers allow you to view DOM details
+  of any component in a page. The info is more
+  detailed than you usually need.
+* Chrome
+  1. Developer Tools panel | Elements tab
+  1. Click on the tag to examine
+  1. Click on Properties on top of the other pane
+* Firefox
+  1. Developer Tools | Customize button at upper right
+     corner | Settings | select DOM
+  1. When inspect a page | DOM on the tool bar
+---
+## Adding & Removing Elements
+---
+### Adding Elements
+* Follow this 3-step procedure:
+  1. Create an element. If applicable, do 1 and 2:
+     1. Create the text node for the element
+     1. Add the text node as a child to the element
+  1. Find the parent for the new element
+  1. Add the element to its parent
+---
+### Adding Elements
+* This example will add a li node to toDoList ul
+```javascript
+// 1. create empty element
+const shopping = document.createElement('li');
+// 1.1. create text node
+const shoppingText = 
+    document.createTextNode('shopping'); 
+// 1.2 Add the textnode to the element:
+shopping.appendChild(shoppingText);
+// 2. Find the Parent for the new Elements
+let toDoList = 
+    document.querySelector('ol#toDoList');
+// 3. Add the element to its parent
+toDoList.appendChild(shopping);
+```
+---
+### Adding Elements
+* The element added to the page will show in the
+  browser window right away.
+* Step 1 could be done using `textContent` or `innerHTML`
+  instead of creating a textNode
+```javascript
+const shopping =
+    document.createElement('li');
+//
+shopping.textContent = 'shopping';
+```
+---
+### Adding Elements
+* An element can be cloned using `cloneNode()`
+  method.
+* By default, it clones the node's tag and
+  attributes.
+* To do a deep cloning, i.e., clone its content and
+  children, use `true` as the argument when calling
+  the method, `node.cloneNode(true)`.
+* The cloned node can be added to a parent.
+  Make sure no duplicate id is created.
+---
+### Adding Elements
+* Insert an element at a particular position
+* `appendChild()` will add the new element as
+  the last child of the parent.
+* How about if you want to insert an element
+  at another position?
+* To insert the new element at a flexible
+  position, use `insertBefore()`, which inserts
+  the new element before the selected
+  element in the container.
+---
+### Adding Elements
+* `insertBefore(newnode, existingnode)`
+* Insert an element at a particular position, e.g.,
+  before the last item in the toDoList.
+```javascript
+const newli = document.createElement('li');
+newli.textContent = 'Exercising';
+let toDoList = document.querySelector('ol#toDoList');
+let ele = toDoList.lastElementChild;
+toDoList.insertBefore(newli, ele);
+```
+---
+### Adding Elements
+* There is no insertAfter() method in plain
+  JavaScript. However, there is an
+  `insertAdjacentElement()` method that does the
+  similar job.
+* For details ref. https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement 
+  and https://www.w3schools.com/jsref/met_node_insertadjacentelement.asp
+---
+### Removing Elements
+* You can only remove a node from its parent. Do the following:
+  1. Find the element and assign it to a variable.
+  1. Find the element's parent.
+  1. Remove the element from its parent.
+```javascript
+let ele =
+    document.querySelectorAll('li')[2];
+let parent = ele.parentNode;
+parent.removeChild(ele);
+```
+---
+### Replacing Elements
+* You can replace a node with this method:
+  `parent.replaceChild(newNode, oldNode)`
+* Follow this procedure:
+  1. Get the parent node, parent;
+  1. Get the node to be replaced, oldNode;
+  1. Create a new node, newNode;
+  1. Call method, `parent.replaceChild(newNode, oldNode)`
+---
+### New DOM Methods
+* Recent DOM proposal introduced new methods,
+  which will make DOM manipulation easier.
+  * `node.before(nodes)` inserts nodes just before node
+  * `node.after(nodes)` inserts nodes just after node
+  * `node.replaceWith(nodes)` replaces node with nodes
+  * `node.remove()` removes node itself
+* https://dom.spec.whatwg.org/#interface-childnode
+* Check on https://caniuse.com to see browser
+  support.
+---
+### Live Nodelists
+* A live list is dynamically updated. If element is
+  added or removed in script at runtime, the list
+  will update automatically.
+* A live list may impact the performance. if you
+  use index to access certain element in the list,
+  pay attention to the new content of the list.
+* `getElementsByClassName()` and
+  `getElementsByTagName()` return a dynamic list.
+* `querySelectorAll()` returns a static list.
+---
+### Live Nodelists
+```javascript
+let listbytag = 
+    document.getElementsByTagName('li');
+let listbyselector =
+    document.querySelectorAll('li');
+```
+* These statements produce identical nodelists
+  initially.
+* Add / remove an item to/from the list.
+* Then check listbytag and listbyselector, you will
+  see one is updated and the other is not.
+---
+### Node Operations vs. InnerHTML
+* DOM Manipulation (`createElement,createTextNode,appendChild`,...)
+  * more coding but will keep doc valid
+* `.innerHTML = ...` 
+  * simple and flexible but error prone 
+  * event listeners added earlier on the elements in innerHTML  
+    will be disabled
+  * script added this way won't execute
+---
+## Working with Attributes
+---
+### Getting Node Attributes
+1. Use the `getAttribute("attributeName")` method:
+```javascript
+document.querySelector('ol').getAttribute('id');
+```
+1. Use DOM node's attributes property, which
+includes all attributes of the node. Each
+attribute value can be accessed via its name.
+However, IE and some versions of Firefox
+don't support it well. 
+---
+### Getting Attributes 
+1. Use a DOM query to select an element:
+```javascript
+let el = document.querySelector('li');
+```
+1. Use `getAttribute()` to get the attribute:
+```javascript
+el.getAttribute('class'); // class assigned
+el.getAttribute('src');   // null
+```
+---
+### Updating Attributes
+* Multiple methods exist for changing attributes.
+```javascript
+let first = document.querySelector('li');
+first.className = '';
+// class is a keyword in JS, so className is used
+let third = document.querySelectorAll('li')[2];
+// [index] can be used on the nodelist returned
+// by the query
+third.setAttribute('class', '');
+```
+---
+### Setting Node Class Attribute
+* Two methods were introduced for setting the
+  class attribute of a node.
+* However, they may produce undesirable
+  result, if the node belongs to multiple classes.
+* The `classList` property is a list of all classes an
+  element has. It has methods that make node
+  class operation easier.
+---
+### Setting Node Class Attribute
+* `classlist` methods:
+```javascript
+someNodeVar.classList.add('classname');
+someNodeVar.classList.remove('classname');
+someNodeVar.classList.toggle('classname');
+someNodeVar.classList.contains('classname');
+```
+* `classList` property is not support by older IE &lt; 10
+---
+### Removing Attributes
+1. Get the element
+1. Check for the existence of the attribute, if yes
+  then remove it
+```javascript
+let el = document.getElementById('toDoList');
+if (el.hasAttribute('class'))
+{
+    el.removeAttribute('class');
+}
+```
+---
+### Dynamically Loading JS file
+* Just add the script element as any other
+  element. But the code is unavailable until the
+  js file is loaded.
+```javascript
+let script = document.createElement('script');
+script.setAttribute('src', 'newscript.js');
+document.appendChild(script);
+```
+---
+### Example - Dynamic Menu
+* Extracting all heading text to make a menu on top
+  of the page or in a section of your choice.
+* When clicking on an item in the menu, it will bring
+  the target section to the top of the page.
+---
+### Summary
+* html document is represented with a DOM Tree.
+* The tree is made up with nodes, which represent
+  the elements of the web document.
+* JS code typically works with 4 types of nodes:
+* document, element, text, and attribute.
+* Typical Node operations
+  * Selecting node and updating its content.
+  * Adding and removing nodes.
+  * Adding, changing, and removing attributes.
+---
+### References
+* https://introduction-javascript.bkoehler.imgd.ca/docs/DOM-scripting/
+* https://javascript.info/document
+* https://dom.spec.whatwg.org/
+
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

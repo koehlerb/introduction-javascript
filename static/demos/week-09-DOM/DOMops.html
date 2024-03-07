@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      This page is used to illustrate basic DOM node operations
+    -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="examples.css" />
+    <title>DOM Examples</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>DOM Operations</h1>
+      <p>DGL 113</p>
+    </header>
+    <nav>
+      <ul>
+        <li>
+          <a href="DOMops.html">DOM Qry & Ops</a>
+        </li>
+        <li>
+          <a href="attributes.html">Attributes</a>
+        </li>
+        <li>
+          <a href="dynamicmenu.html" target="new">Dynamic Menu</a>
+        </li>
+      </ul>
+    </nav>
+    <main id="main">
+      <div id="buttons">
+        <button onclick="append()">Add-default</button>
+        <button onclick="addAtPosition()">Add-any position</button>
+        <button onclick="removeFirst()">Remove-first</button>
+      </div>
+      <h2>Basic DOM Operations</h2>
+      <section id="section1">
+        <h3>Things To Do</h3>
+        <p>There are <span>3</span> items in the list:</p>
+        <ol id="toDoList">
+          <li>Go to class in the morning</li>
+          <li>Go to work in the afternoon</li>
+          <li>Complete the homework</li>
+        </ol>
+      </section>
+      <section id="section2">
+        <h3>Practice output</h3>
+      </section>
+    </main>
+    <footer id="footer">
+      <p>&copy; DGL113 Introduction to JavaScript</p>
+    </footer>
+    <script src="DOMops.js"></script>
+  </body>
+</html>

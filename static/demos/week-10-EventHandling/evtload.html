@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <link rel="stylesheet" href="examples.css" />
+  <!--Don't move the next line. Fix the problem in js file!-->
+  <script src="evtload.js"></script>
+  <title>Event Handling Examples</title>
+</head>
+
+<body>
+  <header>
+    <h1>Events and Event Handling</h1>
+    <p>DGL 113</p>
+  </header>
+  <nav>
+    <ul>
+      <li>
+        <a href="evthandling.html">E.H.Options</a>
+      </li>
+      <li>
+        <a href="evtobject.html">EvtObj&Delegation</a>
+      </li>
+      <li>
+        <a href="evtload.html">Load Event</a>
+      </li>
+      <li>
+        <a href="pionterEvents.html">Pointer Events</a>
+      </li>
+    </ul>
+  </nav>
+  <main id="main">
+    <h2>Use of Window Loading Event</h2>
+    <p>Find out the reason why this page doesn't work as expected though the code is almost identical to the other page.
+      Then fix the problem without changing the html code.</p>
+    <div id="buttons">
+      <button id="eTarget">Evt Target </button>
+      <button id="targetProp">Set Target Prop</button>
+    </div>
+    <section id="section1">
+      <h3>To do list - School</h3>
+      <p>Click on a list item to see the event delegation effect.</p>
+      <ul>
+        <li>
+          Attend online class
+        </li>
+        <li id="secondLi">
+          Meet with my group
+        </li>
+        <li id="thirdLi">
+          Work on assignments
+        </li>
+        <li>
+          <a href="https://www.nic.bc.ca">NIC Home - Open Access</a>
+        </li>
+        <li>
+          <a href="https://www.openai.com" id="disallowedLink">OpenAI</a>
+        </li>
+      </ul>
+    </section>
+    <section id="section2">
+      <h3>To do list - Chores</h3>
+      <p>Use this list for your own practice.</p>
+      <ul>
+        <li>Clean the rooms</li>
+        <li>Do laundry</li>
+        <li>Prepare meals</li>
+      </ul>
+    </section>
+  </main>
+  <footer id="footer">&copy; DGL113 Introduction to JavaScript</footer>
+  <script>
+    let disAllowed = document.getElementById('disallowedLink');
+    disAllowed.addEventListener('click', refuseAccess);
+    function refuseAccess(e) {
+      e.target.textContent += ` - Permission is required for this link.`;
+      // alert('Sorry, permission is required to follow this link.');
+      e.preventDefault();
+    }
+  </script>
+</body>
+
+</html>
