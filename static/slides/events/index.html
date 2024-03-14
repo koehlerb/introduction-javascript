@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Events and Event Handling</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Events and Event Handling
+---
+### Objectives
+* Describe the types of events
+* Add, use, and remove event listeners
+* Use event object
+* Identify where the event occurred
+* Change the default behaviour of an event
+* Describe event propagation models – bubbling and capturing
+* Delegate event handling
+* Timer events and use
+---
+### Study Guide
+1. Walk through the lecture notes to get the overall concepts.
+1. Read the recommended online materials for more detailed
+   explanations and examples
+---
+### Study Guide
+3. Use of examples:
+      * Examine the html code for the page structure
+      * Examine the CSS file to see how the page is presented
+      * Examine the JS file to learn the code. First, you need to understand
+        what it is trying to do then learn how it gets the job done.
+      * Use browser developer tools to step though the code execution
+        process
+      * Modify the code to do similar or different jobs
+---
+### Introduction
+* Events handling makes it possible for the user to interact
+  with your webpage. Pay close attention to the following:
+  1. What an event is.
+  1. What type of events may occur on a webpage and your JS
+     code can respond.
+  1. What an event listener is and what an event handler is.
+  1. How to set up an event handler and to make it to do
+     certain jobs.
+---
+### Events
+* Events are something happened in the browser
+  window, that are recognized and can be
+  responded by JavaScript.
+* You can write JavaScript code to execute when
+  an event fires -- responds to the events such as
+  user actions. So, your website becomes
+  interactive.
+---
+## Event Types (Samples)
+https://developer.mozilla.org/en-US/docs/Web/Events
+---
+### Mouse Events
+* click and dblclick: click always occurs before dblclick.
+* mousedown and mouseup: pressed / released on an
+  element.
+* mouseenter and mouseleave: onto or off the element.
+* mouseover: onto the element or one of its children.
+* mouseout: off the element or one of its children.
+* mousemove: moved over an element, fired
+  continuously.
+* select
+---
+### User Interface or DOM Events
+These events occurs on window and other objects.
+We most often respond to them on window object.
+* load - page finished loading, including all resources,
+  different from DOMContentLoaded.
+* unload - page is unloading.
+* error - when a resource can't be loaded or used.
+* resize - document view has been resized.
+* scroll - document or an element has been scrolled.
+---
+### Keyboard Events
+* keydown
+* keyup
+* keypress - deprecated, use keydown or
+  beforeinput
+---
+### Drag and Drop Events
+* drag: element is being dragged (once / 350ms)
+* dragend: drag is being ended
+* dragenter: dragged element enters a valid drop target
+* dragstart: user starts dragging an element
+* dragleave: dragged element leaves a valid drop target
+* dragover: element is being dragged over a valid drop
+  target (once / 350ms).
+* drop: element is dropped on a valid drop target.
+---
+### Pointer Events
+This is a new type of events. It covers mouse, touch and
+other pointing device events.
+
+| pointerdown | pointerenter       |
+|-------------|--------------------|
+| pointerup   | pointerleave       |
+| pointermove | pointercancel      |
+| pointerover | gotpointercapture  |
+| pointerout  | lostpointercapture |
+
+https://javascript.info/pointer-events
+https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Using_Pointer_Events
+---
+### Focus and Clipboard Events
+Focus Events
+* focus / focusin: An element has received focus,
+  typically for a form control.
+* blur/ focusout: An element has lost focus
+  (focus and blur don't bubble).
+
+Clipboard Events
+* cut
+* copy
+* paste
+---
+### Form Events
+* input - fires when value changes for input, select,
+  or textarea
+* submit
+* reset
+
+Reference:
+
+https://developer.mozilla.org/en-US/docs/Web/Events
+---
+### Responding to Events
+* Many events could occur on an element but by
+  default JS doesn’t respond to any of them.
+* To make your JS to take an action in response to
+  an event, you need to explicitly specify what
+  event to respond, for example,
+```html
+<img src="..." alt="..." onclick="eventHandler()">
+```
+* An event listener is a procedure in JavaScript
+  that waits for an event to occur.
+---
+### Event Handler
+* An event handler would be the actual JS code
+  responding to the event.
+```javascript
+function eventHandler() {
+    alert('click event occurred');
+}
+```
+---
+### Bind Event Handler to Element
+Three ways to bind an event handler to an
+element:
+1. HTML event handler attributes
+1. Traditional DOM event handlers
+1. DOM Level 2 event listeners
+---
+### HTML Event Handler Attributes
+Issues with this approach:
+1. JS code is mixed with the HTML.
+1. Difficult to find where these event are
+   declared as they are buried in html code.
+1. Only one event handler for each event-type
+   can be attached to an element.
+1. The JS code is in a string, error prone with
+   apostrophes and quote marks.
+---
+### Traditional DOM Event Handlers
+```javascript
+let el = document.querySelector('#banner');
+el.onclick = domEventHandler; //no ()
+//
+function domEventHandler(){
+    alert('Click event occurred. This Response is from domEventHandler function!');
+}
+```
+---
+### DOM2 Event Listener (Recommended)
+* Syntax:
+```javascript
+el.addEventListener('event', handler[,option]);
+```
+* Example:
+```javascript
+let el = document.getElementById('id');
+el.addEventListener('click', dom2EventHandler);
+//2nd parameter is the function name but NO ()
+function dom2EventHandler(){
+    alert('Response from dom2EventHandler!');
+}
+```
+---
+### DOM2 Event Listener (Recommended)
+* The listener can be an in-place function or an
+  anonymous function:
+```javascript
+el.addEventListener('click', () => {
+    alert('Response from dom2EventHandler!');
+});
+```
+* It doesn't have the problems presented with
+  other two approaches, e.g., multiple
+  handlers can be used for the same event
+  type.
+---
+### DOM2 Event Listener
+* Often you would like to wait until the page is
+  loaded then to take certain actions.
+* Example
+```javascript
+window.addEventListener('load',initialization);
+//
+function initialization(){
+    //Initialization code;
+}
+```
+* With this code, the script tag linking to
+  external js file would be less location sensitive.
+---
+### DOM2 Event Listener Summary
+* Select the element node that may have
+  certain events your script should respond to,
+  e.g., a button or image.
+* Indicate the event , e.g., click, on the selected
+  node that will trigger a response.
+* State the code you want to run, e.g., start,
+  when the event occurs.
+* Define the handler function, e.g., start()
+---
+### Callback Functions
+* A function is often referred to as a callback
+  function when it's passed into another
+  function as an argument to be invoked later
+  inside the receiving function.
+* Event handler function is a callback function.
+---
+### Event Object
+* When an event occurs, the event handler is
+  called automatically, and the event object is
+  available as an argument to the event
+  handler.
+* However, to use the event object in the event
+  handling function, you must make it a
+  parameter explicitly in the function
+  definition.
+---
+### Event Object
+```javascript
+el.addEventListener('click', dom2EventHandler);
+//
+function dom2EventHandler(e){
+    alert(`Event ${e.type}. Response from dom2EventHandler`);
+}
+```
+---
+### Event Object Properties
+* `type` - e.g., click, focus, etc.
+* `cancellable`
+* `target`: the element on which the event
+  occurred. So, the element properties can be
+  used such as tagName , class, etc.
+---
+### Event Object Properties - Location
+* `screenX` and `screenY`: relative to the upper left
+  corner of the screen where the event took place.
+* `clientX` and `clientY`: relative to the upper left
+  corner of the browser window's content area.
+* `pageX` and `pageY`: relative to the upper left corner
+  of the document.
+* Test their differences with the browser window in
+  different sizes, with and without scroll bars visible.
+* note - all these measurements returns a number in px
+  but when you use them in CSS, px must be added.
+---
+### Screen Information
+* This example webpage shows it clearly,
+  http://www.javascriptbook.com/code/c06/position.html
+* To see the difference between screenX/Y and
+  other two pairs, just size the browser window
+  to cover a portion of the screen, then move
+  the mouse.
+* To see the difference between clientX/Y and
+  pageX/Y, scroll the page down beyond the
+  current screen , the move the mouse pointer
+  on the page.
+---
+### Remove Event Listeners
+```javascript
+target.removeEventListener(type,listener);
+```
+* This method syntax is the same as
+  `addEventListener()`
+* It's a matter of when and how to use it. For
+  example, if you have an event handler to run
+  once, you may remove it at the end of the
+  event handler function, OR you can make a
+  button to add or remove an event handler.
+---
+### Stop Default Behavior
+* Some elements have default behavior
+  associated with certain events such as `<a>`
+  and submit.
+* Often the default behavior is not what you
+  want.
+* preventDefault() method of the event object can
+  be used inside the event handler function to
+  stop the default behavior.
+---
+### Stop Default Behavior
+```javascript
+const brokenLink = document.getElementById('broken');
+//
+brokenLink.addEventListener('click', (event) => {
+  event.preventDefault();
+  alert('Broken Link!');
+});
+```
+Note - Since users may expect certain behavior, use this with caution.
+---
+### Event Propagation
+* Event propagation is the order that the
+  events fire on the element and its containers.
+* There are two forms of event propagation:
+  bubbling and capturing.
+  * Bubbling: the event fires from the element that the
+    event occurred on to its containers until the root.
+  * Capturing: event fires on the root element first, then
+    propagates downward.
+  * http://javascript.info/tutorial/bubbling-and-capturing
+---
+### Event Propagation
+* When you click on an element, clicking event
+  occurs on all its containing elements.
+* With the example on the next slide, if you click
+  on a hyperlink within a `<li>` element, you're
+  also clicking on the `<li>`, `<ul>`, `<body>` and
+  `<html>` elements.
+---
+### Event Propagation
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="utf-8" /></head>
+  <body>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="locations.html">Locations</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </body>
+</html>
+```
+---
+### Event Propagation
+* You may add an event listener at each level to
+  observe the propagation order.
+* To reverse the default event propagation
+  order from bubbling to capturing, use the 3rd
+  parameter in `addEventListener()` and set
+  it to `true`.
+---
+### Stop Event Propagation
+* Occasionally, you may want to stop the event
+  propagation after the event is handled at a
+  lower-level element.
+* How to do it? Use the event object's
+  stopPropagation()method.
+* Where? At the end of the event handler.
+* Caution: Don't incidentally stop other event's
+  propagation if multiple events share the same
+  handler.
+---
+### Event Delegation
+* All modern browsers support the bubble model.
+* As an event occurs on an element it will also
+  be sensed by its parent and grandparent, etc.
+* We don't need to add an event listener on
+  each of the children. Instead, we just listen on
+  the parent or grandparent—save code &
+  improve efficiency.
+* How to do it?
+  Place an event listener on a container
+  element.
+---
+### Event Delegation
+This code delegates the first ul on the page to
+handle click event occurred on its li children.
+```javascript
+let el = document.querySelector('ul');
+el.addEventListener('click', delegate);
+//
+function delegate(event) {
+  alert('event occurred on ' +
+        event.target.tagName + 
+        ' but handled by its parent ' + 
+        this.tagName);
+}
+```
+---
+### Event Delegation
+* As the example demonstrated, although
+  the event is handled at a higher level, the
+  event's target property still points to the
+  original element that received the event.
+* `"this"` refers to the element that the
+  event listener is attached to.
+---
+### Event Delegation
+Not only you can use event object to retrieve info of the
+element that the event occurred on, but also set its
+attributes.
+```javascript
+function delegate(event) {
+  alert('event occurred on ' +
+        event.target.tagName + 
+        ' but handled by its parent ' + 
+        this.tagName);
+  e.target.className = 'myclass';
+}
+```
+---
+## Event Example - Drag & Drop
+---
+### Drag and Drop
+* To make an element draggable, all that is required is to
+  set its `draggable` attribute to `true`.
+* Dragging alone may not be as useful; often you
+  need to drop it somewhere.
+* You often need to write event listeners to detect
+  and control the various parts of the drag-and-
+  drop process.
+---
+### Drag & Drop Example
+1. Only a few element types can be dragged
+  by default. To make an element draggable,
+  set its `draggable` attribute to `true`.
+1. By default, an element cannot be dragged
+  into or dropped into another element. Use
+  `event.preventDefault()` to change the
+  default behavior.
+1. The receiving element needs to add the
+  dragged element as a child.
+---
+### Drag & Drop Examples - HTML
+Add two div elements to the page:
+```html
+<div id="dragEle" draggable="true">
+  Drag me!
+</div>
+<div id="dropTarget">Drop here!</div>
+```
+Add CSS as shown on the next slides
+---
+### Drag & Drop Examples - CSS
+```CSS
+#dragEle {
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  text-align: center;
+  line-height: 100px;
+  cursor: move;
+} 
+#dropTarget {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+```
+---
+### Drag & Drop Examples - JS
+```javascript
+let dragElement = document.getElementById('dragEle');
+let dropTarget = document.getElementById('dropTarget');
+//
+dragElement.addEventListener('dragstart', dragStart);
+dropTarget.addEventListener('dragover', dragOver);
+dropTarget.addEventListener('drop', dragDrop);
+//
+function dragStart(e) {
+  e.dataTransfer.setData('text', e.target.id);
+};
+```
+---
+### Drag & Drop Examples - JS
+```javascript
+function dragOver(e) {
+  e.preventDefault();
+};
+//
+function dragDrop(e) {
+  e.preventDefault();
+  let data = e.dataTransfer.getData('text');
+  dropTarget.append(document.getElementById(data));
+};
+```
+---
+### Drag & Drop Examples
+* Here are two drag & drop examples
+  1. https://www.tutorialrepublic.com/codelab.php?topic=html5&file=drag-and-drop-elements
+  1. https://javascript.info/mouse-drag-and-drop
+* The first example uses HTML 5 drag & drop API.
+* The second example uses plain JS Code with
+  position. It's more flexible but the code is more
+  complex.
+---
+## Timer Events
+---
+### Timer Functions and Events
+* The following statement will
+  trigger a timer event after `timeInterval`
+  milliseconds:
+```javascript
+window.setTimeout(theFunction,timeInterval)
+```
+* Then `theFunction` will be called as the event
+  handler. It's also called a callback function.
+---
+### Timer Functions and Events
+* The callback function could be an anonymous
+  function with arrow notation.
+```javascript
+let timer = setTimeout(()=>alert('Time\'s Up!'), 10000);
+```
+* What's the use of the assignment?
+  The function returns an instance number that represents
+  the timer.
+* With the instance number, the timer can be
+  cancelled before it fires:
+```javascript
+window.clearTimeout(timer);
+```
+---
+### Timer Functions and Events
+* The `window.setInterval()` method works like
+  `setTimeout()`, except that it will repeatedly
+  trigger a timer event and invoke the callback
+  function after every given number of milliseconds.
+```javascript
+let n = 10;
+const timer =
+setInterval(count,1000);
+function count(){
+    console.log(n--);
+    if(n&lt;=0){clearInterval(timer);}
+}
+```
+---
+### Exercises
+* Display the self-updated date and time on the page
+  footer using the Date object and timer event / function.
+* Date() returns the system date and time string
+* `let date = new Date();` will create a Date object and assign
+  the reference to date variable.
+* Many methods are available to Date object for retrieving
+* year, month, date, day, hour, minute, and second.
+* https://javascript.info/date
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#examples
+---
+### Summary
+* Event types and event handling
+* Creating, using, and removing event listeners
+* Using event object
+* Changing the default behaviour of an event
+* Delegating event handling, and
+* Identifying where the event occurred
+* Drag & Drop Examples
+* Timer events and Exercise
+---
+### References
+1. https://developer.mozilla.org/en-US/docs/Web/Events
+1. http://javascript.info/bubbling-and-capturing
+1. http://www.javascriptbook.com/code/c06/
+   
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

@@ -144,7 +144,7 @@ This schedule is tentative and subject to change.
       <td>Mar 12</td>
       <td>Mar 14</td>
       <td>Mar 14</td>
-      <td>Events and Event Handling</td>
+      <td><a href="pathname:///slides/events">Events and Event Handling</a></td>
       <td>
         <a href="/docs/events">Events and Event Handling</a>
       </td>
