@@ -158,7 +158,7 @@ This schedule is tentative and subject to change.
       <td>Mar 19</td>
       <td>Mar 21</td>
       <td>Mar 21</td>
-      <td>Programming HTML and CSS</td>
+      <td><a href="pathname:///slides/html-css">Programming HTML and CSS</a></td>
       <td>
         <a href="/docs/programming-HTML-CSS">Programming HTML and CSS</a>
       </td>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Programming HTML and CSS</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Programming HTML and CSS
+---
+### Objectives
+* Control video and audio playback
+* Use the DOM element's style property
+* Retrieve and set styles
+* Use the DOM styleSheets object
+* Enable, disable, and switch stylesheets in
+  JavaScript
+* Work with CSS3 properties and animations
+---
+## Programming HTML 
+---
+### HTML5 Video Element
+```html
+<video id="vid1" width="400" height="300" controls="controls">
+  <source src="movie.mp4" type="video/mp4" />
+  <source src="movie.ogg" type="video/ogg" />
+  <source src="movie.webm" type="video/webm" />
+  <p>Video tag not supported.</p>
+</video>
+```
+* Ref. https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
+---
+### HTML5 Video Element
+* Control playback using the `pause()` and
+  `play()` methods:
+```javascript
+let myVideo = document.getElementById('vid1').play();
+let myVideo = document.getElementById('vid1').pause();
+```
+* For the `play()` method to work, newer browsers
+  require that either your app has received the
+  user permission for auto play, or the user has
+  interacted with the page, such as click on the
+  page, etc. But muted auto-play is always
+  allowed. https://developer.chrome.com/blog/autoplay/
+---
+### HTML5 Audio Element
+```html
+<audio controls="controls">
+  <source src="song.ogg" type="audio/ogg" />
+  <source src="song.mp3" type="audio/mpeg" />
+  <p>Your browser does not support the audio
+     element.</p>
+</audio>
+```
+* Ref. https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
+---
+### HTML5 Audio Element
+* Controlling Playback using
+  the `pause()` and `play()` methods:
+```javascript
+let myAudio = document.getElementById('aud1').play();
+let myAudio = document.getElementById('aud1').pause();
+```
+* To add audio to a page using JavaScript:
+```javascript
+let myAudio = document.createElement('audio');
+myAudio.setAttribute('src', 'sound.ogg');
+document.querySelector('main').appendChild(myAudio);
+```
+---
+### Video and Audio Properties
+* video and audio elements have common
+  properties that can be accessed or controlled by
+  JavaScript, https://www.w3schools.com/tags/ref_av_dom.asp
+---
+## Manipulating CSS with JavaScript
+---
+### Updating CSS
+* Every element has a style property, which can
+  be used to set the CSS of the element:
+```javascript
+let ele = document.getElementById('toDoList');
+ele.style.color= 'blue';
+```
+* NOTE - you cannot apply a style to a node list
+  directly; do one element at a time.
+---
+### Updating CSS
+* Any CSS property name that includes a dash must
+  be written in camelCase notation:
+```javascript
+toDoList.style.backgroundColor = 'gray';
+```
+* Alternatively, you can use [ ] notation with CSS
+  syntax:
+```javascript
+toDoList.style[background-color]= 'yellow';
+```
+* You can also move the sub-property to the right
+  side of =, but not recommended:
+```javascript
+toDoList.style = 'background-color: yellow';
+```
+---
+### Retrieving CSS
+* `ele.style` can retrieve the element's inline styles 
+  and styles assigned by JavaScript.
+* Function `getComputedStyle(element)` will
+  retrieve all styles of the element, including embedded 
+  and external CSS assigned to the element:
+```javascript
+let ele = document.querySelector('ul');
+let styles = getComputedStyle(ele);
+```
+* Then individual styles can be accessed using the dot notation:
+```javascript
+console.log(styles.color);
+```
+---
+### Retrieving CSS
+* NOTE - The computed styles are read-only.
+---
+### CSS Style vs. Classes
+* using `ele.style` property allows you to set element
+  styles at runtime but it's hard to maintain.
+* A better and recommended approach is to
+  change the class of an element and keep the
+  relevant styles for each class in a stylesheet.
+---
+### CSS Style vs. Classes
+* A class can be assigned to an element in
+  multiple ways:
+```javascript
+ele.setAttribute('class', 'classA' ); //IE >= 8.0
+ele.className = 'classA';
+```
+* A better approach is to use classList property
+  (discussed previously)
+```javascript
+ele.classList.add('classA'); //IE >= 10.0
+ele.classList.remove('classA'); //IE >= 10.0
+```
+---
+### document styleSheets Property
+* The `document.styleSheets` property contains
+  all stylesheets linked or embedded to the
+  page.
+* The stylesheets are added to the collection in
+  the order of their presence in the page.
+* You can use a regular loop to go through the
+  list but cannot use Array methods such as
+  `find()`, `indexOf()`, etc. on it.
+---
+### document styleSheets Property
+* Each element in the collection has a `disabled`
+  property, which indicates whether the
+  stylesheet will apply to the page.
+* We can use this feature to provide the user
+  with theme selections.
+* This feature is relatively new, check browser
+  compatibility before use, https://developer.mozilla.org/en-US/docs/Web/API/DocumentOrShadowRoot/styleSheets#Browser_compatibility
+---
+### Selecting a Style Sheet
+* We can use buttons or a dropdown list for the
+  user to select a preferred stylesheet.
+* Make each button or list item to match a
+  particular stylesheet or an index in the
+  `styleSheets` collection. Then disable all styles 
+  except for the selected one.
+* Detailed implementation is left for your own
+  practice.
+---
+## Special Effects and Animations
+---
+### Advanced Control of CSS
+* We will use JavaScript to set CSS3 properties
+  in coordination with CSS to achieve special
+  effects.
+---
+### CSS3 Transitions - Review
+* To create transition, use the following
+  transition style:
+```text  
+transition: property duration
+timing-function delay;
+```
+where,
+* `property` is a property of the object that
+  changes between the initial and end states;
+* `duration` is the transition time in seconds (s)
+  or milliseconds (ms).
+---
+### CSS3 Transition - Review
+* `timing-function` is one of the following
+  keywords: `ease`: (the default),
+  `ease-in`, `ease-out`, `ease-in-out`,
+  and `linear`.
+* `delay` is measured in seconds (s) or
+  milliseconds (ms).
+---
+### Example
+* When an element is clicked on, hide the
+  element by changing its opacity to 0 and
+  make the process last for 2 seconds.
+* Implementation
+  * Set an element's transition effect on opacity in
+    CSS.
+  * Change the opacity of an element in JS
+* How to make the click toggle between
+  show and hide of the element?
+---
+### Example
+* When an element is clicked on, move the
+  element off the screen to the right side.
+* Implementation
+  * Set an element's transition effect on property
+    `left` in CSS.
+  * Change the leftproperty in JS. Note: the
+    `left` property value must be a string with a
+    unit, e.g., px or em.
+  * CSS positioning on the element must be
+    enabled.
+---
+### Example
+* How to move the element off the screen then
+  bring it back to where it was?
+* Implementation
+  * after the first change on `left` then use
+    `setTimeout()` method to call another
+    function to change the element's `left` back to
+    the original position.
+---
+### Animation - CSS vs. JS
+* JavaScript is more powerful and flexible.
+  However, CSS does have some basic
+  animation tools such as transform, transition,
+  and keyframe animation.
+* Whenever possible, the CSS option is preferred
+---
+### Animation - Example
+* The `setTimeOut()` and `setInterval()` methods 
+  are often used to animate elements on
+  a web page.
+* At each time interval, motion will occur.
+  1. HTML file — structures the page component, a square
+  1. CSS file — defines the square's size and background color
+  1. JS file — in `setInterval()` method, specifies
+     the angle changes at each interval,
+     then use the transform stye to rotate the square
+---
+### Animation — Example
+* This site has good coverage on JS
+  animations, https://javascript.info/js-animation
+* View the Source Code, then check out the
+  CSS and JS file to see the implementation.
+---
+### Animation - Example - CSS
+```css
+#square {
+  margin: 100px;
+  width: 100px;
+  height: 100px;
+  background: #d16;
+}
+```
+---
+### Animation - Example - JS
+```javascript
+const squareElement = document.getElementById('square');
+let angle = 0;
+setInterval( () => {
+  angle = (angle + 2) % 360;
+  squareElement.style.transform = `rotate(${angle}deg)`
+}, 1000/60);
+```
+---
+### Animation
+* `requestAnimationFrame()` is a better
+  method than `setInterval()` for animation as
+  it optimizes the performance.
+* This approach doesn't set the frame rate. The frame rate 
+  is usually 60 per second.
+* Your code will call
+  `requestAnimationFrame(rotate)`, where
+  `rotate` is a function name.
+* In the `rotate` function, it will make one move 
+  and call the method again at the end.
+* For details, ref. https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+---
+### Animation - Example
+```javascript
+const squareElement = document.getElementById('square');
+let angle = 0;
+//
+function rotate() {
+  angle = (angle + 2)%360;
+  squareElement.style.transform = `rotate(${angle}deg)`
+  window.requestAnimationFrame(rotate);
+}
+//
+const id = requestAnimationFrame(rotate);
+```
+---
+### Animation - CSS @keyframe
+```css
+#square {
+  margin: 100px;
+  width: 100px;
+  height: 100px;
+  background: #cc0;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg); }
+  to {transform:rotate(360deg);}
+}
+```
+---
+### Animation - Fading Effect
+Often you can combine CSS and JS to do it.
+1. Assign the element a class, e.g., invisible.
+1. Use CSS to set the opacity for the class.
+1. Set the transition on opacity to the element
+   that has the class, but not the class itself.
+1. Use `setTimeout` to remove the class from
+   the element.
+---
+### Animation - Example - CSS
+Creating a Fading Effect
+
+CSS file - if the element (h1) to fade/appear
+
+```css
+.hide {
+  opacity: 0;
+}
+
+h1 {
+  transition: opacity 2s;
+}
+```
+
+Position and transform effect can also be
+achieved in similar way.
+---
+### Animation - Example - JS
+Creating a Fading Effect
+
+Click on an element to trigger fading event handler
+
+```javascript
+function fading(e) {
+  e.target.classList.add('hide');
+  /* the 3rd argument in the setTimeout() below is passed
+     into function show() so that it can directly work on the
+     event target. */
+  setTimeout(show, 2000, e.target);
+}
+//
+function show(ele) {
+  //ele parameter is the e.target passed in
+  ele.classList.remove('hide');
+}
+```
+---
+## Drawing and Accessing Local Files - Reference Only
+---
+### Drawing with canvas
+* Canvas is a rectangular area in a page where
+  you can:
+  * draw shapes and graphics.
+  * load and display image files and control their display.
+  * Practical applications includes dynamic charts,
+    JavaScript/HTML games, and animations.
+  * https://www.w3schools.com/graphics/canvas_reference.asp
+---
+### Drawing with Canvas
+* Drawing Example
+* Clock example https://www.w3schools.com/graphics/tryit.asp?filename=trycanvas_clock_start
+---
+### Processing Local Files - Optional
+* JavaScript cannot directly access user local files
+  on its own.
+* However, if user selects a file via 
+```html
+<input type="file">
+```
+  or drag and drop, then JavaScript can
+  access the information of these files selected by
+  user.
+---
+### Summary
+* Program video and audio element
+* Use the DOM style property
+* Retrieve and set styles
+* Access classes using className
+* Enable, disable, and switch stylesheets in
+  JavaScript
+* Working with CSS3 properties
+---
+### Summary
+* Simple animations
+* draw with the `<canvas>` element - optional
+* interface with the local file system - optional
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+    <!--this file illustrate canvas operations -->
+<head>
+    <title>HTML5 canvas</title>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        canvas {
+            border: gray 1px solid;
+        }
+    </style>
+    <script>
+        var context, context2, canvas1, canvas2;
+        var x = 50;
+        var y = 50;
+        var counter = 0;
+        let timer;
+
+        window.onload = function () {
+            canvas1 = document.querySelector("canvas");
+            context = canvas1.getContext('2d');
+            let button = document.getElementById("rotateBall");
+            button.addEventListener("click", animateBall);
+            canvas2 = document.getElementById("canvas2");
+            context2 = canvas2.getContext('2d');
+            let button2 = document.getElementById("simpleDrawing");
+            button2.addEventListener("click", simpleDrawing);
+            canvas1.addEventListener("mousedown", startDrawing);
+            canvas1.addEventListener("mouseup", stopDrawing);
+            button2 = document.getElementById("clearCanvas");
+            button2.addEventListener("click", () => {
+                clearInterval(timer);//in case the animation is on going
+                context.clearRect(0, 0, 400, 300);
+                context2.clearRect(0, 0, 400, 300);
+                button.innerHTML = "Rotate ball"
+            }
+            );
+        }
+
+        function paint() {
+            context.beginPath();
+            context.fillStyle = "#ff0000";
+            context.arc(x, y, 15, 0, Math.PI * 2, false);
+            context.closePath();
+            context.fill();
+        }
+        function animate() {
+            context.clearRect(0, 0, 400, 300);
+            counter++;
+            x += 20 * Math.sin(counter);
+            y += 20 * Math.cos(counter);
+            paint();
+        }
+
+        function animateBall(e) {
+            if (e.target.innerHTML == "Rotate ball") {
+                e.target.innerHTML = "Stop Animation";
+                timer = setInterval(animate, 100);
+            } else {
+                e.target.innerHTML = "Rotate ball";
+                clearInterval(timer);
+            }
+        }
+        function simpleDrawing() {
+            context2.clearRect(0, 0, 400, 300);
+            context2.fillStyle = "green";
+            context2.fillText("Draw filled rect", x, y - 10);
+            context2.fillRect(x, y, 100, 100);
+            context2.strokeText("Draw stroke rect", x + 120, y - 10);
+            context2.strokeRect(x + 110, y, 100, 100);
+            //the following code is for generic lines and shapes.
+            context2.strokeText("Draw lines & fill a polygon", x + 220, y - 10);
+            context2.beginPath();
+            context2.lineWidth = 2;
+            context2.moveTo(x + 220, y);
+            context2.lineTo(x + 300, y + 100);
+            context2.lineTo(x + 250, y + 80);
+            context2.stroke();
+            context2.fill();
+        }
+        function startDrawing(event) {
+
+            canvas1.addEventListener("mousemove", mouseDrawing);
+            let rect = canvas1.getBoundingClientRect();
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
+            context.beginPath();
+            context.moveTo(x, y);
+        }
+        function stopDrawing() {
+            canvas1.removeEventListener("mousemove", mouseDrawing);
+        }
+        function mouseDrawing(event) {
+            let rect = canvas1.getBoundingClientRect();
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
+            context.lineTo(x, y);
+            context.stroke();
+        }
+
+    </script>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <button id="simpleDrawing">Simple Drawing</button>
+                <button id="rotateBall">Rotate ball</button>
+                <button id="clearCanvas">Clear Canvas</button>
+            </li>
+            <li>Click and hold in the first box to start a freehand drawing.</li>
+        </ul>
+    </nav>
+    <canvas id="canvas1" width="400" height="300">
+        <p>Your browser doesn't support the canvas element.</p>
+    </canvas>
+    <canvas id="canvas2" width="400" height="300">
+        <p>Your browser doesn't support the canvas element.</p>
+    </canvas>
+</body>
+
+</html>

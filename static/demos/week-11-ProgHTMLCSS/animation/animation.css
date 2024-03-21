@@ -1,7 +1,8 @@
-body{
-  width:90%;
-  margin:auto;
+body {
+  width: 90%;
+  margin: auto;
 }
+
 .square {
   margin: 20px;
   width: 150px;
@@ -10,25 +11,37 @@ body{
   /*transform: translateX();*/
   position: relative;
   color: white;
-  font-size: 1.4em;
-  transition: opacity 2s, height 3s, left 3s, margin  3s;
+  font-size: 1.2em;
+  transition: opacity 2s, height 3s, left 3s, margin 3s;
 }
 
 div {
- left: 1em;
- margin-left: 0;
+  left: 1em;
+  margin-left: 0;
 }
+
 .right {
   margin-left: 300px;
 }
+
 #B {
   width: 100px;
   height: 100px;
   background: #cc0;
   animation: spin 2s linear 3;
 }
-@keyframes spin { from { transform:rotate(0deg); } to {transform:rotate(360deg); } }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .hide {
-  height: 0;
+  height: 0; /*this will not take effect as #B has a higher specificity*/
   opacity: 0;
 }

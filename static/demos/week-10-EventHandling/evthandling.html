@@ -1,77 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <!--
+  <head>
+    <!--
       This page is used to illustrate the following:
       a) using 2 buttons to show 3 options for event handling
       b) using a list to show event propagation
     -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
 
-  <link rel="stylesheet" href="examples.css" />
-  <title>Event Handling Examples</title>
-</head>
+    <link rel="stylesheet" href="examples.css" />
+    <title>Event Handling Examples</title>
+  </head>
 
-<body>
-  <header>
-    <h1>Events and Event Handling</h1>
-    <p>DGL 113</p>
-  </header>
-  <nav>
-    <ul>
-      <li>
-        <a href="evthandling.html">E.H.Options</a>
-      </li>
-      <li>
-        <a href="evtobject.html">EvtObj&Delegation</a>
-      </li>
-      <li>
-        <a href="evtload.html">Load Event</a>
-      </li>
-      <li>
-        <a href="pionterEvents.html">Pointer Events</a>
-      </li>
-    </ul>
-  </nav>
-  <main>
-    <h2 id="setFont">Event Handling Options</h2>
-    <div id="buttons">
-      <!--click event on the next 2 buttons are handled in external JS code.-->
-      <button id="DOMHandler">DOM Handler</button>
-      <button id="DOM2Listener">DOM2 Listener</button>
-    </div>
-    <section id="section1" onclick="alert('Click event occurred on section.');">
-      <h3>To do list - School</h3>
-      <p>
-        Click on a list item to see the event propagation.
-      </p>
-      <ul onclick="alert('Click event occurred on ul.');">
-        <li id="firstLi" onclick="alert('Click event occurred on li.');">
-          Attend online class
-        </li>
-        <li id="secondLi" onclick="alert('Click event occurred on li.');">
-          Meet with my group
-        </li>
-        <li id="thirdLi" onclick="alert('Click event occurred on li.');">
-          Work on assignments
-        </li>
-      </ul>
-    </section>
-    <section id="section2">
-      <h3>To do list - Chores</h3>
-      <p>Use this list for your own practice.</p>
+  <body>
+    <header>
+      <h1>Events and Event Handling</h1>
+      <p>DGL 113</p>
+    </header>
+    <nav>
       <ul>
-        <li>Clean the rooms</li>
-        <li>Do laundry</li>
-        <li>Prepare meals</li>
+        <li>
+          <a href="evthandling.html">E.H.Options</a>
+        </li>
+        <li>
+          <a href="evtobject.html">EvtObj&Delegation</a>
+        </li>
+        <li>
+          <a href="evtload.html">Load Event</a>
+        </li>
+        <li>
+          <a href="pointerEvents.html">Pointer Events</a>
+        </li>
       </ul>
-    </section>
-  </main>
-  <footer id="footer">&copy; DGL113 Introduction to JavaScript</footer>
-  <script src="evthandling.js"></script>
-</body>
-
+    </nav>
+    <main>
+      <h2 id="setFont">Event Handling Options</h2>
+      <div id="buttons">
+        <!--click event on the next 2 buttons are handled in external JS code.-->
+        <button id="DOMHandler">DOM Handler</button>
+        <button id="DOM2Listener">DOM2 Listener</button>
+      </div>
+      <section
+        id="section1"
+        onclick="alert('Click event occurred on section.');"
+      >
+        <h3>To do list - School</h3>
+        <p>Click on a list item to see the event propagation.</p>
+        <ul onclick="alert('Click event occurred on ul.');">
+          <li id="firstLi" onclick="alert('Click event occurred on li.');">
+            Attend online class
+          </li>
+          <li id="secondLi" onclick="alert('Click event occurred on li.');">
+            Meet with my group
+          </li>
+          <li id="thirdLi" onclick="alert('Click event occurred on li.');">
+            Work on assignments
+          </li>
+        </ul>
+      </section>
+      <section id="section2">
+        <h3>To do list - Chores</h3>
+        <p>Use this list for your own practice.</p>
+        <ul>
+          <li>Clean the rooms</li>
+          <li>Do laundry</li>
+          <li>Prepare meals</li>
+        </ul>
+      </section>
+    </main>
+    <footer id="footer">&copy; DGL113 Introduction to JavaScript</footer>
+    <script src="evthandling.js"></script>
+  </body>
 </html>
