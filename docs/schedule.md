@@ -172,7 +172,7 @@ This schedule is tentative and subject to change.
       <td>Mar 26</td>
       <td>Mar 28</td>
       <td>Mar 28</td>
-      <td>Maintaining State</td>
+      <td><a href="pathname:///slides/maintaining-state">Maintaining State</a></td>
       <td>
         <a href="https://javascript.info/cookie">Cookies</a><br />
         <a href="https://javascript.info/localstorage">localStorage and sessionStorage</a>

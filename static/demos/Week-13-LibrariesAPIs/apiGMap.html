@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="examples.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Libraries & APIs</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="swiper.html">Carousal</a></li>
+            <li><a href="htmlMap.html">HTML Map</a></li>    
+          <li><a href="apiGMap.html">API Map</a></li>
+          <li>
+            <a href="userLocGMap.html">User Loc</a>
+          </li>
+        </ul>
+      </nav>
+    <div id="map"></div>
+    <script>
+
+        async function initMap() {
+
+            // The location of NIC
+            const position = { lat: 49.708397, lng: -124.970977 };
+            /* Request needed libraries.
+            The following statement unpacks the Map property from the object 
+            returned by google.maps.importLibrary("maps"). Map is a constructor.
+            await will wait for the promise to resolve before continuing.
+            */
+            const  { Map }  = await google.maps.importLibrary("maps");
+            // The following statement unpacks the AdvancedMarkerElement property from the imported library
+            const { AdvancedMarkerElement }
+                = await google.maps.importLibrary("marker");
+
+            // The map, centered at NIC
+           let map = new Map(document.getElementById("map"), {
+                zoom: 15,
+                center: position,
+                mapId: "DEMO_MAP_ID",
+            });
+
+            // The marker, positioned at NIC
+            const marker = new AdvancedMarkerElement({
+                map: map,
+                position: position,
+                title: "NIC",
+            });
+        }
+        // initMap();
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?&loading=async&callback=initMap"></script>
+</body>
+
+</html>

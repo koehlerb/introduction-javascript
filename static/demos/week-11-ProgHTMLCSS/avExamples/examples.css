@@ -1,11 +1,5 @@
 @charset "utf-8";
 
-body {
-  width: 90%;
-  margin: auto;
-  border: 1px solid;
-}
-
 body header {
   padding: 0;
 }

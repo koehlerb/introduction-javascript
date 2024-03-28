@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Maintaing State</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Maintaing State
+---
+### Objectives
+* explain state maintenance techniques
+* explain the cookie concepts and purpose
+* describe cookie attributes
+* set, retrieve and delete cookies
+* save multiple data items in a single cookie
+* encode and decode cookie data
+* use html5 local storage
+---
+### How HTTP Works
+* Users visit webpages in client-server model
+  using http / https protocols, which are
+  stateless.
+* After the server responds to the client
+  request with a webpage, or the connection is
+  closed depending on the HTTP version, the
+  server will lose the client information.
+---
+### How HTTP Works
+![HTTP](http1.png)
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Session
+
+https://http.dev/session
+---
+### How HTTP Works
+![HTTP](http2.png)
+https://www.baeldung.com/cs/web-sessions
+---
+### Maintaining Web States
+* Often, keeping the user / visitor state is
+  critical for service enhancement and even for
+  the normal operations of web applications.
+* Common mechanisms for http / https state
+  maintenance are cookies and local storage.
+  IndexedDB, a new technique, can also be
+  used for the same purpose as local storage,
+  but it is usually for offline applications.
+---
+### Cookies
+* Cookies, also called document cookies (
+  accessed through document object) are small
+  files saved with a user's browser.
+* Used to store data that can be retrieved
+  between http requests, sent to the server as
+  part of the http request.
+---
+### Cookies
+* Limits
+  * Can be read only by a page from the same domain
+    that sets them - a feature.
+  * Browsers set the size limit, but RFC 6265 requires a
+    browser should support a minimum of 4kb per
+    cookie and 50 cookies per domain.
+---
+### Cookies
+* Cookies take the form of a text file that
+  contains a list of 'name=value' pairs separated
+  by semicolons, such as: 
+```javascript
+document.cookie = 'name=John;city=Courtenay';
+```
+* Create Cookies
+```javascript
+document.cookie = 'cookieName=value';
+```
+* Run the same statement with a different
+  key/value pair will add another cookie, which is
+  appended to the existing ones.
+---
+### Encoding and Decoding Data
+* Cookie name/value may not include certain
+  characters such as semicolons, commas, and
+  whitespace chars. 
+* https://curl.haxx.se/rfc/cookie_spec.html
+* If they are needed in name/value, you need to
+  encode the data using `encodeURIComponent()`
+  so that it will be stored correctly.
+* After retrieving the cookie, decode the special
+  characters using `decodeURIComponent()`.
+---
+### Encoding and Decoding Data
+* Example - you may test this example in a
+  browser console:
+```javascript
+let str = 'Here is a (short) piece of text.';
+let str1 = encodeURIComponent(str);
+// Here%20is%20a%20(short)%20piece%20of%20text.
+let str2 = decodeURIComponent(str1);
+// Here is a (short) piece of text.
+```
+---
+### Cookies - Visual Verification
+* Browser Developer Tools allow you to view
+  document cookies visually.
+* Chrome lists them under Application tab.
+  However, Chrome doesn't support cookies when
+  the page is browsed using file protocol. So, if
+  Chrome is your chosen browser, use a local web
+  server such as XAMPP or VSCode Live Server
+  extension to test this feature.
+![Chrome Cookie](chrome-cookie.png)
+---
+### Cookies - Visual Verification
+* Firefox shows them under Storage tab.
+* Firefox supports session cookies even if the page
+  is browsed locally with the file protocol. If the
+  visual inspection tool doesn't work, try the
+  console, which seems more reliable.
+* In the browser console, just type
+  document.cookie, it will show all cookies
+  accessible to the current page.
+![Firefox Cookie](firefox-cookie.png)
+---
+### Updating Cookie Values
+* Change Cookie Value
+```javascript
+document.cookie = 'cookieName=value';
+```
+* If you use a cookie name that already exists, it
+  will use the new value to replace the existing
+  one.
+
+NOTE - cookie name is case sensitive.
+---
+### Retrieving Cookies
+* Retrieve Cookies
+```javascript
+const cookies = document.cookie;
+```
+* `document.cookie` returns a string that
+  includes all cookies accessible to the current
+  webpage.
+* Then you can extract individual cookies from
+  the string - discussed later in this document.
+---
+### Cookie Attributes
+* Other than the cookie name, you may
+  also set attributes of a cookie such as
+  * expires / max-age
+  * path
+  * domain
+  * secure
+* The attributes are listed after
+  `key=value`, delimited by ';'.
+* Cookie attribute names are case-
+  insensitive.
+---
+### Cookie Attribute - Expires
+* By default, cookies are deleted once a
+  browser session is finished (all
+  windows/tabs of the same browser are
+  closed, or after a certain time, e.g., 20mins).
+  These type of cookies are called session
+  cookies.
+* To extend its existence, add
+  `"expires=date"` to the end of the cookie
+  when it's created.
+---
+### Cookie Attribute - Expires
+* The date should be in the UTC (Coordinated
+  Universal Time) String format:
+  "Day, dd mmm yyyy hh:mm:ss GMT"
+```javascript
+document.cookie = 'name=JohnDoe;expires=Mon, 01 Jan 2023 00:00:00 GMT';
+```
+* As the UTC string format is a little hard to
+  remember, it might be better to start with
+  today's date.
+---
+### Cookie Attribute - Expires
+```javascript
+//create new date obj with system date & time
+const expiryDate = new Date();
+//add 24 hours (milliseconds) to the date obj
+const tomorrow = expiryDate.getTime() + 1000 * 60 * 60 * 24;
+//set expiryDate to tomorrow
+expiryDate.setTime(tomorrow);
+document.cookie = 
+  `name=JohnDoe;expires=${expiryDate.toUTCString()}`;
+```
+---
+### Cookie Attribute - Max-Age
+* `expires` takes a date string and is supported by
+  all browsers including old IEs.
+* The newer `max-age` is easier to use and is also
+  widely supported. It takes a value of the number
+  of seconds counted from the cookie creation
+  time.
+```javascript
+const tomorrow = 60 * 60 * 24;
+document.cookie = `name=JohnDoe;max-age=${tomorrow}`;
+```
+---
+### Cookie Attributes - Path and Domain
+* By default, cookies can only be read by pages
+  inside the same directory as the file sets it.
+* Add the string `'; path=/'` to the cookie to allow
+  all pages on the site to access the cookie.
+* Add `'; domain=rootDomainName'` to the cookie to
+  allow pages of all subdomains under the root
+  domain of the page to access the cookie.
+* Add `'; secure'` to the end of a cookie will ensure
+  it's only transmitted over HTTPS.
+* NOTE - need a web server to test the last 2 features.
+---
+### References - Cookie Attributes
+* JavaScript API, which is the interface to http
+  cookies, https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/cookies/Cookie
+* Http Cookie, https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+* RFC 6265 HTTP State Management Mechanism - more technical https://datatracker.ietf.org/doc/html/rfc6265
+---
+### Example - Creating Cookies
+```javascript
+function createCookie(name,value,days,path,domain,secure) {
+  let maxage;
+  if (days) maxage = days * 24 * 60 * 60;
+  let cookieStr = `${name}=${encodeURIComponent(value)}`;
+  if (maxage) cookieString += `; max-age=${maxage}`
+  if (path) cookieStr += 
+    `; path = ${encodeURIComponent(path)}`; 
+  if (domain) cookieStr += 
+    `; domain = ${encodeURIComponent(domain)}`; 
+  if (secure) cookieStr += "; secure"; 
+  document.cookie = cookieStr; // create the cookie
+}
+```
+---
+### Reading Multiple Cookies
+* A cookie is stored as a string; within it there are
+  multiple "name=value" pairs.
+* To read the value of a cookie we need to separate
+  these "name=value" pairs using string method `split()`,
+  which produces an array of "name=value" pairs;
+```javascript
+var crumbs = document.cookie.split(';');
+```
+* Browsers usually use “; “ to separate cookies.
+* NOTE - `document.cookie` only reveals cookie
+  names and values but no other info such as path,
+  expires, etc.
+---
+### Extracting Cookie Values
+* For a particular cookie, we need to go 
+  through the "name=value" array to find it:
+```javascript
+function getCookie(name) {
+    let cookies = document.cookie.split(";");
+    for (let cookie of cookies) {
+      let cookieParts = cookie.split("=");
+      if (cookieParts[0].trim() == name) {
+        return decodeURIComponent(cookieParts[1].trim()); 
+      }
+    } //end of for loop
+    return null;
+}
+```
+---
+### Deleting Cookies
+* Just need to set its expiry time to before now, the
+  browser will remove it. Please note, some browsers may
+  delay the cookie removal until your session is over.
+```javascript
+function deleteCookie(name) {
+    createCookie(name, "", -1);
+}
+```
+* Creating the same named cookie will overwrite the
+  existing one. Setting the expires to -1 means to expire it
+  asap, though this may not happen until the browser is
+  closed.
+---
+### Deleting Cookies
+* To remove a cookie, set it to expire at a time in
+  the past:
+```javascript
+document.cookie = 
+    'name=JohnDoe; expires=Mon, 01 Jan 2024 00:00:01 GMT';
+```
+* or, set its `max-age` to 0:
+```javascript
+document.cookie = 'name=JohnDoe; max-age=0';
+```
+---
+### Multiple Values in a Cookie
+* Each cookie contains one "name=value" pair.
+* To store multiple pieces of data such as a user's
+  name, age, and email, you need three different
+  cookies, which could be undesirable.
+* To have multiple values in one cookie, the idea is
+  to separate the values in the cookie's value
+  portion with a delimiter. When reading the
+  cookie, extract each piece out of the value
+  string.
+---
+### Multiple Values in a Cookie
+```javascript
+function mvCookie() {
+    let userName = prompt("Enter your name please:");
+    let email = prompt("Enter your email please:");
+    document.cookie = 
+      `user=${userName}|${email}; max-age=3600;`;
+    document.querySelector( "#output" ).innerHTML =
+      `<p>Multi-valued Cookie created: 
+          user=${userName}|${email};</p>`;
+}
+```
+---
+### Cookie vs. Data Privacy
+* Cookies are stored with a client browser but
+  transmitted to servers when making a http req.
+* EU and many countries require explicit user
+  consent for collecting user info with cookie.
+* However, strictly necessary cookies are exempted
+  from this.
+* For details, ref. these sites:
+  * https://www.captaincompliance.com/education/strictly-necessary-cookies
+  * https://www.privacypolicies.com/cookie-consent/
+---
+## Web Storage API
+---
+### Web Storage API
+* Web storage (or localStorage) is a feature of
+  HTML5.
+* It lets you store data in client browser.
+* The data it stores can only be accessed by
+  the domain that sets the data.
+---
+### Web Storage API
+* There are two types of storage: *local* and
+  *session* storage.
+* They are implemented using the
+  `localStorage` and `sessionStorage` objects.
+---
+### Web Storage API
+* Both local and session storages have the
+  same methods to get and set data, but each
+  lasts a different amount of time.
+* `sessionStorage` data is deleted at the end of
+  the session - when the browser or tab is
+  closed. 
+* `localStorage` data stays unless it's explicitly
+  deleted by the user or by JS code.
+---
+### Web Storage API
+* `localStorage` and `sessionStorage` are accessed
+via the `window` object.
+* Save Data
+```javascript
+localStorage.setItem(key, value);
+sessionStorage.setItem(key, value);
+```
+* Retrieve Data
+```javascript
+localStorage.getItem(key);
+sessionStorage.getItem(key);
+```
+---
+### Web Storage API
+* Clear all saved data
+```javascript
+localStorage.clear()
+sessionStorage.clear()
+```
+* Remove one item
+```javascript
+localStorage.removeItem(key)
+sessionStorage.removeItem(key)
+```
+* References
+  1. https://www.w3schools.com/jsref/api_storage.asp
+  1. https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API
+---
+### Web Storage API
+* Like cookies, both key and value for
+  local/session storage are strings.
+* If you need to store objects, serialize it
+  before saving the data and deserialize it
+  after retrieving the data.
+---
+### Web Storage Verification
+* Like document cookies, web storage info can
+  be checked with Browsers Developer Tools,
+  either visually or in the browser's console.
+* For example, to view the storage content, in
+  the browser console tool, type
+```javascript
+localStorage // or
+sessionStorage
+```
+---
+### Web Storage Example
+```javascript
+function checkStorage() {
+  let color;
+  if (window.localStorage) {
+    color = localStorage.getItem("color");
+    if (color) alert(`your favorite color is ${color}`);
+    else {
+      color = prompt("what's your favorite color?");
+      if (color) {
+        localStorage.setItem("color", color);
+      }
+    }
+  }
+}
+```
+---
+### Cookies vs. localStorage
+* Both store information on the client side and
+  both can only be accessed by the same
+  domain pages/files.
+* Cookies are smaller (about 4kb) and localStorage
+  is larger (about 5mb).
+* Cookies send info back to server with every
+  HTTP request while localStorage doesn't.
+* Cookie has an expiry date while localStorage
+  doesn't set it explicitly.
+---
+### Cookies vs. localStorage
+* https://medium.com/swlh/cookies-vs-localstorage-whats-the-difference-d99f0eb09b44
+* https://stackoverflow.com/questions/3220660/local-storage-vs-cookies
+---
+### IndexedDB
+* IndexedDB is a database built into a browser, 
+  much more powerful than localStorage. 
+  It's typically used for offline apps.
+* Version 1.0 was released as a W3 Recommendation in 2015.
+---
+### IndexedDB
+* For more details, ref. 
+  * https://javascript.info/indexeddb 
+  * https://www.w3.org/TR/2015/REC-IndexedDB-20150108/ 
+  * https://www.freecodecamp.org/news/a-quick-but-complete-guide-to-indexeddb-25f030425501/ 
+  * https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+---
+### Summary
+This module covered:
+1. cookie and localStorage concepts.
+1. Using cookies and localStorage to store
+  data.
+1. Store, retrieve, update, and delete cookies
+  and localStorage data.
+1. Applications with both.
+---
+### References
+1. https://javascript.info/data-storage
+1. https://www.baeldung.com/cs/web-sessions
+1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Session
+1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie
+1. https://httpwg.org/specs/rfc6265.html#cookie
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>
