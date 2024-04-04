@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="examples.css" />
+    <title>Chart.js</title>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="chart.html" class="current">Chart.js</a>
+        <a href="swiper.html">Carousel</a>
+        <a href="htmlMap.html">HTML Map</a>
+
+        <a href="apiGMap.html">API Map</a>
+
+        <a href="userLocGMap.html">User Loc</a>
+      </nav>
+      <h1>Libraries & APIs</h1>
+    </header>
+    <main>
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+    </main>
+    <footer>
+      <p>DGL 113</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const ctx = document.getElementById('myChart');
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [
+            {
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

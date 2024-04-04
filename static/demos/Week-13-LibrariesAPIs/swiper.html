@@ -1,93 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Path: examples/slideShow/swiper.html ref. https://swiperjs.com/swiper-api -->
+  <!-- Path: examples/slideShow/swiper.html ref. https://swiperjs.com/swiper-api -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
-  <link rel="stylesheet" href="examples.css" />
-  <title>Swiper Slider</title>
-  <style>
-    .swiper {
-      width: 600px;
-      height: 300px;
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <link rel="stylesheet" href="examples.css" />
+    <title>Swiper Slider</title>
+    <style>
+      .swiper {
+        width: 600px;
+        height: 300px;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </head>
 
-<body>
-  <header>
-    <h1>Libraries & APIs</h1>
-</header>
-<nav>
-    <ul>
-      <li><a href="swiper.html">Carousal</a></li>
-      <li><a href="htmlMap.html">HTML Map</a></li>
+  <body>
+    <header>
+      <nav>
+        <a href="chart.html">Chart.js</a>
+        <a href="swiper.html" class="current">Carousel</a>
+        <a href="htmlMap.html">HTML Map</a>
 
-      <li><a href="apiGMap.html">API Map</a></li>
-      <li>
+        <a href="apiGMap.html">API Map</a>
+
         <a href="userLocGMap.html">User Loc</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- Slider main container -->
-  <div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide"><img src="images/image0.jpg" alt="Put your favorite image imagex.jpg in images folder, where x is 0, 1, 2"></div>
-      <div class="swiper-slide"><img src="images/image1.jpg" alt="Put your favorite image imagex.jpg in images folder, where x is 0, 1, 2"></div>
-      <div class="swiper-slide"><img src="images/image2.jpg" alt="Put your favorite image imagex.jpg in images folder, where x is 0, 1, 2"></div>
-      ...
+      </nav>
+      <h1>Libraries & APIs</h1>
+    </header>
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <img
+            src="images/image0.jpg"
+            alt="Put your favorite image imagex.jpg in images folder, where x is 0, 1, 2"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="images/image1.jpg"
+            alt="Put your favorite image imagex.jpg in images folder, where x is 0, 1, 2"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="images/image2.jpg"
+            alt="Put your favorite image imagex.jpg in images folder, where x is 0, 1, 2"
+          />
+        </div>
+        ...
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- If we need scrollbar -->
+      <div class="swiper-scrollbar"></div>
     </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
 
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <script>
+      const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        // direction: 'vertical',
+        direction: 'horizontal',
+        loop: true,
 
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-  </div>
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination',
+        },
 
-  <script>
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      // direction: 'vertical',
-      direction: 'horizontal',
-      loop: true,
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
 
-      // If we need pagination
-      pagination: {
-        el: '.swiper-pagination',
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-
-      // And if we need scrollbar
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-      autoplay: false, /*{
+        // And if we need scrollbar
+        scrollbar: {
+          el: '.swiper-scrollbar',
+        },
+        autoplay: false /*{
   
     delay: 5000,
- },*/
-      //Transition effect. Can be 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative'
-      // creative may not work out right
-      effect: 'fade',
-      speed: 1000,
-    });
-  </script>
-
-</body>
-
+ },*/,
+        //Transition effect. Can be 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative'
+        // creative may not work out right
+        effect: 'fade',
+        speed: 1000,
+      });
+    </script>
+  </body>
 </html>
