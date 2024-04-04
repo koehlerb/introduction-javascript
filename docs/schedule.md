@@ -186,7 +186,7 @@ This schedule is tentative and subject to change.
       <td>Apr 2</td>
       <td>Apr 4</td>
       <td>Apr 4</td>
-      <td>Libraries and APIs</td>
+      <td><a href="pathname:///slides/libraries-apis">Libraries and APIs</a></td>
       <td>
         <a href="https://developers.google.com/maps/documentation/javascript/overview">Google Maps JavaScript API</a><br />
       </td>

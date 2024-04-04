@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>DGL 113: Libraries and APIs</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+## Libraries and APIs
+---
+### Objectives
+* Describe the purpose and benefit of online libraries /
+  frameworks, and platform APIs
+* Link an online library to a web page.
+* Explain how the HTML, CSS, and JS code interact for the
+  selected library.
+* Use a Carousel library.
+* Use Platform APIs such as Google Maps API.
+---
+### Introduction
+* Libraries, frameworks, and platforms are widely
+  used in the web development community.
+* It's generally agreed that a library provides
+  specific functionality, a framework offers a
+  structured environment for development, and a
+  platform encompasses the entire ecosystem for
+  building and deploying applications.
+---
+### Introduction
+  * https://stackoverflow.com/questions/48239046/difference-between-library-platform-and-framework
+* https://www.baeldung.com/cs/framework-vs-library
+* https://eisenbergeffect.medium.com/libraries-and-frameworks-and-platforms-oh-my-f77a0ec3d57d
+---
+### Introduction
+* In this module, we introduce a couple JS
+  Libraries and Google Maps API.
+* You may reference web reviews to find good
+  libraries that fit your needs.
+  * https://kinsta.com/blog/javascript-libraries/
+  * https://www.atatus.com/blog/20-best-javascript-frameworks-and-libraries/
+* For each library and API, pay attention to its
+  purpose, the syntax, as well as other technical
+  details.
+---
+## Web Animation and Data Visualization
+---
+### Anime JS
+* Anime JS, https://animejs.com/, is considered one
+  of the best and easy to use web animation libraries.
+* However, its minimal documentation is less than
+  intuitive to beginners.
+* You need to have a good knowledge of HTML and
+  CSS, as well as basic animation terminology.
+* This tutorial has a good introduction and examples
+  to get you started: https://www.sitepoint.com/get-started-anime-js/
+---
+### Chart JS
+* Chart.js is a free JS library for making HTML-based
+  charts. It is one of the most popular JS data
+  visualization libraries, and it's easy to use.
+* You may start with this W3School page,
+  https://www.w3schools.com/js/js_graphics_chartjs.asp
+* More examples are available on chatjs site,
+  https://www.chartjs.org/docs/latest/samples/information.html
+---
+## Image Gallery and Slider Libraries
+---
+### Carousel / Slider Libraries
+* Carousels / sliders are widely used on the web,
+  though they are also much criticized.
+* After all, they are just tools. How to use them is in
+  the hand of the designers / developers.
+* Many carousel libraries are available. Watch the
+  demo and try them out.
+---
+### Carousel / Slider Libraries
+* http://wowslider.com/
+* https://www.impressivewebs.com/demo-files/vertical-news-slider/
+* https://revolution.themepunch.com/examples-jquery/
+* https://www.cssscript.com/top-10-javascript-css-carousels/
+* https://www.jqueryscript.net/blog/best-carousel.html
+---
+### Carousel Library - Swiper
+* Vanila JS - no additional library is needed
+* Free and popular
+* Small size https://bundlephobia.com/package/swiper@11.0.4
+* Easy to use
+* Responsive
+* Customizable
+* Homesite - https://swiperjs.com/. It also has demos
+  and documentation on the same site.
+---
+### Swiper-Slider - Where to Start
+1. Start with the examples to see how it works.
+1. Examine and understand the code.
+1. Replace the placeholders with your own
+  images.
+
+This web blog reviews many good websites
+where you may find free images,
+https://zapier.com/blog/best-free-stock-photos/
+---
+### Swiper-Slider - How to use
+```html
+<div class="swiper-wrapper">
+  <div class="swiper-slide"><img src="images/image0.jpg" alt=""></div>
+  <div class="swiper-slide"><img src="images/image1.jpg" alt=""></div>
+  <div class="swiper-slide"><img src="images/image2.jpg" alt=""></div>
+  ...
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+  <!-- If we need a scrollbar -->
+  <div class="swiper-scrollbar"></div>
+</div>
+```
+---
+### Swiper-Slider - How to use
+* CSS and JS - linked via cdn:
+```html
+<link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+</script>
+```
+* You may also host the library on your own server.
+---
+### Swiper-Slider - Customization
+* One way to customize your slider is to use its
+  options when you create a Swiper object using:
+```javascript
+new Swiper('.swiper', {options})
+```
+* You can also do additional customization such
+  as tweaking its CSS. However, that would
+  require good understanding of its html
+  structures both at the design time and at the
+  run time.
+* Do a small step at a time and frequently test it
+  with a browser.
+---
+### Carousel Library - Slick Slider
+* Free and popular
+* Small size
+* Easy to use
+* Responsive
+* Customizable
+* Although it requires the jQuery library, you don't need
+  to know jQuery to use it.
+* http://kenwheeler.github.io/slick/
+---
+### Slick-Slider - Where to Start
+1. Start with the demo examples to see how it
+   works.
+1. Examine and understand the code.
+1. Replace the placeholders with your own
+   images.
+---
+### Slick-Slider - How to use
+```html
+<section class=“yourSliderClassName">
+  <div> <img > </div>
+  <div> <img > </div>
+  <div> <img > </div>
+  <div> <img > </div>
+</section>
+```
+---
+### Slick-Slider How to use
+* CSS - linked via cdn:
+```html
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+```
+---
+### Slick-Slider - How to use
+* JS Code—requires jQuery 2.2.0 library:
+```javascript
+<script src="https://code.jquery.com/jquery-2.2.0.min.js">
+</script>
+<script src=“https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js”>
+</script>
+<script>
+    $(".slider").slick({
+      /* your options*/
+    })
+</script>
+```
+---
+### Slick-Slider - Customization
+* One way to customize your slider is to use its
+  options when you call the `slick()` method.
+* You can also do additional customization such
+  as tweaking its CSS. However, that would
+  require good understanding of its html
+  structures both at the design time and at the
+  run time.
+---
+### Slick-Slider - Page Structure
+```html
+<section class="slick-slider">
+  <button class="slick-prev slick-arrow">Previous</button>
+  <div class="slick-list draggable">
+    <div class="slick-track">
+      <div class="slick-slide"> <img ></div>
+      <div class="slick-slide" ><img></div>
+    </div>
+  </div>
+  <button class="slick-next slick-arrow">Next</button>
+  <ul class="slick-dots" >
+    <li class="" id="slick-slide00"><button>1</button></li>
+    <li id="slick-slide01" class="slick-active"><button>2</button></li>
+  </ul>
+</section>
+```
+---
+### Slick-Slider - CSS
+* You also need to check its CSS files to see how
+  the plugin presents various components.
+* There are mainly two CSS files:
+  * slick.css - for the slide layout and structural aspects.
+  * slick-theme.css - for the font and colors, in particular, the
+    prev and next buttons, and dot buttons.
+* If you need more detailed customization, do a
+  small step at a time and frequently test it with a
+  browser.
+---
+## Platform APIs
+---
+### Platform APIS
+* Platforms like Google and Facebook let you use
+  their services and update data stored on their
+  platform via APIs:
+  * https://developers.facebook.com/docs/graph-api/overview/
+  * https://developers.google.com/android/guides/api-client
+* One of popular services offered by Google is
+  Maps. The remaining of this document will
+  discuss the use of Google Maps JS API.
+* https://developers.google.com/maps/documentation/javascript/overview
+---
+### Embedded Google Maps
+To embed a static Google Map to your site, you
+can do it easily following this procedure:
+1. Open Google Maps with the right map view.
+1. Click on the Menu button at the top left corner.
+1. Select Share or embed map from the popup menu.
+1. On the popup screen,
+   * Send a Link | Copy Link (to share), OR
+   * Embed a Map | Copy HTML (to embed)
+1. Paste the link/html where you want to share / embed
+the map.
+https://support.google.com/maps/answer/144361?co=GENIE.Platform%3DDesktop&hl=en
+---
+### Google Maps API
+* Why do we still need the Google Maps API?
+* It allows flexibility and customization.
+* To use Google Maps API, you need an API key,
+  https://developers.google.com/maps/documentation/javascript/get-api-key
+* It also requires a billing account in place, though 
+  there is no charge for limited traffic.
+* However, we can test some of its features without
+  setting up the billing account.
+---
+### Google Maps API - HTML & CSS
+* https://developers.google.com/maps/documentation/javascript/tutorial
+* Set an HTML element to host the map:
+```html
+<div id="map"></div>
+```
+* Set up the CSS - explicitly set the map's
+  height. An absolute value would be
+  more reliable.
+---
+### Google Maps API
+* Load the Maps JavaScript API and call
+the handler `'initMap'` when it's done.
+```html
+<script 
+    src="https://maps.googleapis.com/maps/api/js?&loading=async&callback=initMap">
+</script>
+```
+* Google recommends a new bootstrap JS
+  API loader, https://mapsplatform.google.com/resources/blog/more-control-loading-maps-javascript-api/
+  but the one above is more readable.
+---
+### Loading Maps API
+* The `src` URL links to Google Maps JS API file,
+  which loads all needed Maps API resources.
+* If you have an API key, enter it in the loader.
+  The `async` attribute lets the browser render
+  the page while the resources are loaded.
+* After the API resources are loaded, it will call
+  the function, `initMap`. For details, ref. these
+  links:
+  * https://medium.com/@nikjohn/speed-up-google-maps-and-everything-else-with-async-defer-7b9814efb2b
+  * https://hacks.mozilla.org/2017/09/building-the-dom-faster-speculative-parsing-async-defer-and-preload/
+---
+### Importing API Components
+* The JS loader code will load the API to your site.
+  For performance purposes, they are not all loaded
+  into the RAM.
+* Before using specific components, you still need
+  to import them into your JS running environment:
+```javascript
+async function initMap() {
+    const { Map } = await google.maps.importLibrary("maps");
+    const { AdvancedMarkerElement } = 
+      await google.maps.importLibrary("marker");
+    // create and place the map
+}
+```
+---
+### Importing API Components
+* You may notice that the keywords `async` and `await`
+  are used in the code.
+* `await` makes JS wait until the method
+  in the statement returns a result, and `async` is
+  required to make `await` work.
+* You can find detailed discussions in
+  https://javascript.info/async , which is not required
+  for DGL 113.
+---
+### Showing the Map
+* The rest of the code in the function will show the
+  map centred at the specified GPS position with a
+  street zoom level:
+```javascript
+async function initMap() {
+    const { Map } = await google.maps.importLibrary("maps");
+    const { AdvancedMarkerElement } = 
+      await google.maps.importLibrary("marker");
+    const map = new Map(document.getElementById("map"), {
+      zoom: 15, center: position, mapId: "DEMO_MAP_ID",
+    });
+    const marker = new AdvancedMarkerElement({
+      map: map, position: position, title: "NIC",
+    });
+}
+```
+---
+### Customizing Google Maps
+* You can provide options when creating and
+  drawing the map to make the map tailored to
+  your needs.
+* In the example, the map centre and the zoom
+  level are specified.
+* You can also set the marker as illustrated in the
+  example.
+---
+### Customizing Markers
+* Google has deprecated the Google Map marker
+  and advising to use the AdvancedMarker, which
+  allows more customization and is a DOM
+  element. https://developers.google.com/maps/documentation/javascript/advanced-markers/overview
+* mapId is required for AdvancedMarker
+* Although the AdvancedMarker is used in the
+  example, we haven't done any customization.
+---
+### Customizing Markers
+* Modify the marker to show with different background
+  color:
+```javascript
+const pinBackground = 
+    new PinElement({background: "#FBBC04",});
+const markerViewBackground = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    content: pinBackground.element,
+});
+```
+---
+### Customizing Markers
+* Use your own image for the marker,
+https://developers.google.com/maps/documentation/javascript/examples/advanced-markers-graphics
+```javascript
+const markerImg = document.createElement('img');
+markerImg.src = 'imagePath/name.png';
+const imageMarkerView = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    content: markerImg,
+    title: 'A marker using a custom Image',
+});
+```
+---
+### Making Markers Clickable
+* The idea is when the marker is clicked on, it will
+  show a popup window.
+* Do this in two steps:
+  1. Create an infoWindow object
+  1. Add an eventListener to the marker. When it's clicked,
+     show the infoWindow
+---
+### Making Markers Clickable
+```javascript
+const map = new Map(document.getElementById("map"), {
+    zoom: 15, center: position, mapId: "DEMO_MAP_ID",
+});
+const marker = new AdvancedMarkerElement({
+    position: defaultloc, map: map, title: "N.I. College",
+});
+const infowindow = new google.maps.InfoWindow({
+    content: '<p>Click on the link to visit the college
+      website: <a href="http://www.nic.bc.ca"> North Island College </a></p>',
+    ariaLabel: "NIC",
+});
+marker.addListener("click", () => {
+    infowindow.open({anchor: marker, map,});
+});
+```
+---
+### Getting the User Location
+* In previous examples, the GPS coordinates are
+  coded in.
+* An alternate approach would be to let the
+  system find the user's location, then centre the
+* map around that location.
+* This html5 API will do the job:
+```javascript
+navigator.geolocation.getCurrentPosition(success_handler, failure_handler)
+```
+https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+---
+### Getting the User Location
+```javascript
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        alert(position.coords.latitude);
+        alert(position.coords.longitude);
+      },
+      function() {
+        alert("no location info found");
+      })
+}
+```
+---
+### Getting the User Location
+* The method,
+```javascript
+navigator.geolocation.getCurrentPosition(
+    function(position) { }, 
+    function { })
+```
+  will ask for permission to get user's location.
+* If permitted and if it successfully retrieves
+  user's location, it will call the 1st function,
+  which takes the user's position info as its
+  parameter. Otherwise, it will call the 2nd
+  function.
+* For Mac OS, you may need to grant the
+  browser permission in System Preferences.
+---
+### Showing Maps @ User Location
+```javascript
+let yourloc, defloc = { lat: 49.7084, lng: -124.9709};
+function initMap() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          yourloc = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          showMap();
+        }, 
+        function () {
+          showMap();
+        });
+    } else {
+      showMap();
+    }
+}
+```
+---
+### Showing Maps @ User Location
+In `initMap()` on previous page:
+* if it gets the user's permission and if it
+  successfully retrieves the user's location, it will
+  show the Google map centred at that location;
+* otherwise, it will show a popup message first
+  then show the map at the default location.
+---
+### More Customization
+* You can also let user select a different type of
+  map, add layers such as transit and traffic, on
+  the map, etc.
+* Google Maps is an evolving technology. New
+  features are added and updated on an ongoing
+  basis.
+---
+### Google Maps API References
+For more information, reference these sites:
+1. https://developers.google.com/maps/documentation/javascript
+1. https://developers.google.com/maps/documentation/javascript/tutorial
+1. https://developers.google.com/maps/documentation/javascript/reference
+1. https://developers.google.com/maps/documentation/javascript/style-reference
+1. https://developers.google.com/maps/documentation/maps-static/web-service-best-practices
+---
+### Exercise
+Modify the example in the Examples - Exercise
+demo or create you own webpage with a Google
+Map component to do the following:
+1. show a marker for a target location and a
+   marker at the user's location.
+1. show the marker with different options such
+   as color, icon, custom image, etc.
+1. Make both markers clickable.
+---
+### Summary
+This module covered the following topics:
+* JS Library, framework, and platform API
+  concepts
+* Carousal Libraries - Swiper and Slicker Slider
+* Platform API - Google Maps
+
+
+
+                </textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/math/math.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        mermaid: {},
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.KaTeX,
+          RevealMermaid,
+        ],
+      });
+    </script>
+  </body>
+</html>

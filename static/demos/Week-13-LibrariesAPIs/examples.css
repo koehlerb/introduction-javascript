@@ -5,10 +5,12 @@ body header {
   padding: 0;
   margin: 0;
 }
+
 header img {
   width: 100%;
   height: 10em;
 }
+
 nav ul {
   display: flex;
   border-bottom: 1px solid;
@@ -16,10 +18,12 @@ nav ul {
   padding: 0;
   margin: 0;
 }
+
 nav li {
   flex: 1 1 45%;
   text-align: center;
 }
+
 nav a {
   text-decoration: none;
   font-size: 1.2em;
@@ -33,11 +37,13 @@ footer {
   text-align: center;
   margin: 0;
 }
+
 main {
   min-height: 300px;
   text-align: center;
   padding-top: 0;
 }
+
 /*
 main button {
   width: 10em;
@@ -50,6 +56,7 @@ main ol {
   margin: auto;
   text-align: left;
 }
+
 section {
   box-sizing: border-box;
   border: 1px solid;
@@ -62,15 +69,18 @@ section {
 p {
   margin-top: 0;
 }
+
 footer {
   clear: both;
   border-top: 1px solid;
 }
+
 table {
   border-collapse: collapse;
   width: 90%;
   margin: auto;
 }
+
 table,
 th,
 td {
@@ -81,6 +91,7 @@ td {
 .setBackColor {
   background-color: #b9e7e7;
 }
+
 .setFont {
   font-family: fantasy;
 }
@@ -89,8 +100,10 @@ td {
 video {
   width: 90%;
   margin: auto;
-  height: 280px;;
+  height: 280px;
+  ;
 }
+
 /**
 These 2 rules are for animation features
 */
@@ -99,15 +112,26 @@ main * {
   left: 0em;
   transition: opacity 2s, left 2s;
 }
+
 .animate {
   opacity: 0.5;
   left: 200px;
 }
+
 #map {
   height: 450px;
   width: 600px;
   margin: auto;
 }
+
+#map p {
+  font-family: Verdana,
+    Geneva,
+    Tahoma,
+    sans-serif;
+  color: black
+}
+
 .myMarker {
   background-color: #4285F4;
   border-radius: 8px;

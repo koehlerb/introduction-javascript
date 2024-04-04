@@ -16,13 +16,13 @@
     <nav>
         <ul>
             <li><a href="swiper.html">Carousal</a></li>
-            <li><a href="htmlMap.html">HTML Map</a></li>    
-          <li><a href="apiGMap.html">API Map</a></li>
-          <li>
-            <a href="userLocGMap.html">User Loc</a>
-          </li>
+            <li><a href="htmlMap.html">HTML Map</a></li>
+            <li><a href="apiGMap.html">API Map</a></li>
+            <li>
+                <a href="userLocGMap.html">User Loc</a>
+            </li>
         </ul>
-      </nav>
+    </nav>
     <div id="map"></div>
     <script>
 
@@ -35,13 +35,13 @@
             returned by google.maps.importLibrary("maps"). Map is a constructor.
             await will wait for the promise to resolve before continuing.
             */
-            const  { Map }  = await google.maps.importLibrary("maps");
+            const { Map } = await google.maps.importLibrary("maps");
             // The following statement unpacks the AdvancedMarkerElement property from the imported library
             const { AdvancedMarkerElement }
                 = await google.maps.importLibrary("marker");
 
             // The map, centered at NIC
-           let map = new Map(document.getElementById("map"), {
+            let map = new Map(document.getElementById("map"), {
                 zoom: 15,
                 center: position,
                 mapId: "DEMO_MAP_ID",
@@ -53,8 +53,19 @@
                 position: position,
                 title: "NIC",
             });
+            // add a popup window when the mark is clicked on
+            const infowindow = new google.maps.InfoWindow({
+                content: "<p>Click on the link to visit the college website:<br> <a href='http://www.nic.bc.ca' target='_blank'>North Island College </a></p>",
+                ariaLabel: "NIC",
+            });
+
+            marker.addListener("click", () => {
+                infowindow.open({
+                    anchor: marker,
+                    map: map,
+                });
+            });
         }
-        // initMap();
     </script>
     <script async src="https://maps.googleapis.com/maps/api/js?&loading=async&callback=initMap"></script>
 </body>
