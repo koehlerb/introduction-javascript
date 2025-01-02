@@ -198,7 +198,9 @@ This schedule is tentative and subject to change.
     <tr>
       <td>14</td>
       <td>Apr 8</td>
-      <td colspan="5">Project Presentation and Course Review</td>
+      <td></td>
+      <td></td>
+      <td colspan="3">Project Presentation and Course Review</td>
      
     </tr>
   </tbody>
